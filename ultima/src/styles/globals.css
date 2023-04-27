@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+  body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+  }
+
+  html {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+  }
+  
+  #header {
+    background: linear-gradient(to right, #ffffff, #C9BFC0);
+  }
