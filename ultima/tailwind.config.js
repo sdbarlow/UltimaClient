@@ -21,15 +21,31 @@ module.exports = {
           '0%': {height: '100vh'},
           '100%': {height: `calc(100vh - 6rem)`}
         },
-        'reveal': {
-          '0%': {opacity: '0%'},
-          '100%': {opacity: '50%'}
-        }
+        'drive': {
+          '0%': { transform: 'translateX(1000px)',
+                  opacity: '100%', 
+                  display: 'inline-block'},
+          '50%': { transform: 'translateX(0px)',
+                  opacity: '100%',
+                  display: 'inline-block' },
+          '100%': { display: 'none'}
+        },
+          'disappear': {
+            '0%': {opacity: '50%'},
+          '100%': {opacity: '0%'}
+          },
+          'reveal': {
+            '0%': {opacity: '0%'},
+            '50%': {opacity: '0%'},
+            '100%': {opacity: '100%'}
+          }
       },
       animation: {
         headerdown: 'headerdown 2s ease-out',
         bodyshrink: 'bodyshrink 2s ease-out',
-        reveal: 'reveal 5s ease-out'
+        hide: 'hide 3s ease-out',
+        reveal: 'reveal 5s ease-out', // added 3s delay
+        drive: 'drive 5s ease-out'
       }
     },
   },
