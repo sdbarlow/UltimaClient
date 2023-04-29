@@ -77,6 +77,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className="flex justify-center w-screen h-screen overflow-hidden bg-black">
+              <h1 className='text-white text-6xl'>Locations</h1>
+            </div>
     </>
   )
 }
