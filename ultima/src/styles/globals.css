@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,10 +11,23 @@
   html {
     margin: 0px;
     padding: 0px;
+    scroll-behavior: smooth;
   }
   
   #header {
     background: linear-gradient(to right, #ffffff, #C9BFC0);
+  }
+
+  #prompt{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+    color: white;
+  }
+
+  .texts{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+    color: white;
   }
   
   
@@ -31,31 +45,59 @@
     margin-bottom: 20px;
   }
 
-  #item-1:checked ~ .cards #item-5-photo, #item-2:checked ~ .cards #item-3-photo, #item-3:checked ~ .cards #item-4-photo {
-    transform: translatex(100%) scale(.5);
+  #item-1-photo, #item-2-photo, #item-3-photo, #item-4-photo, #item-5-photo {
+    opacity: 0;
+  }
+
+  #item-1-text, #item-2-text, #item-3-text, #item-4-text, #item-5-text {
+    opacity: 0;
+  }
+
+  #item-1:checked ~ .cards #item-5-photo,
+  #item-2:checked ~ .cards #item-4-photo,
+  #item-3:checked ~ .cards #item-2-photo,
+  #item-4:checked ~ .cards #item-1-photo,
+  #item-5:checked ~ .cards #item-3-photo {
+    transform: translatex(90%) scale(.5);
     opacity: .2;
     z-index: 2;
   }
 
-  #item-1:checked ~ .cards #item-4-photo, #item-2:checked ~ .cards #item-2-photo, #item-3:checked ~ .cards #item-3-photo {
+  #item-1:checked ~ .cards #item-4-photo,
+  #item-2:checked ~ .cards #item-3-photo,
+  #item-3:checked ~ .cards #item-5-photo,
+  #item-4:checked ~ .cards #item-2-photo,
+  #item-5:checked ~ .cards #item-1-photo {
     transform: translatex(-90%) scale(.5);
     opacity: .2;
     z-index: 2;
   }
   
-  #item-1:checked ~ .cards #item-3-photo, #item-2:checked ~ .cards #item-1-photo, #item-3:checked ~ .cards #item-2-photo {
+  #item-1:checked ~ .cards #item-3-photo,
+  #item-2:checked ~ .cards #item-1-photo,
+  #item-3:checked ~ .cards #item-4-photo,
+  #item-4:checked ~ .cards #item-5-photo,
+  #item-5:checked ~ .cards #item-2-photo {
     transform: translatex(-50%) scale(.8);
     opacity: .4;
     z-index: 4;
   }
   
-  #item-1:checked ~ .cards #item-2-photo, #item-2:checked ~ .cards #item-3-photo, #item-3:checked ~ .cards #item-1-photo {
+  #item-1:checked ~ .cards #item-2-photo,
+  #item-2:checked ~ .cards #item-5-photo,
+  #item-3:checked ~ .cards #item-1-photo,
+  #item-4:checked ~ .cards #item-3-photo,
+  #item-5:checked ~ .cards #item-4-photo {
     transform: translatex(60%) scale(.8);
     opacity: .4;
     z-index: 4;
   }
   
-  #item-1:checked ~ .cards #item-1-photo, #item-2:checked ~ .cards #item-2-photo, #item-3:checked ~ .cards #item-3-photo {
+  #item-1:checked ~ .cards #item-1-photo,
+  #item-2:checked ~ .cards #item-2-photo,
+  #item-3:checked ~ .cards #item-3-photo,
+  #item-4:checked ~ .cards #item-4-photo,
+  #item-5:checked ~ .cards #item-5-photo {
     transform: translatex(0) scale(1);
     opacity: 1;
     z-index: 6;
@@ -63,22 +105,50 @@
   }
 
 
+  #item-1:checked ~ #player #item-5-text,
+  #item-2:checked ~ #player #item-4-text,
+  #item-3:checked ~ #player #item-2-text,
+  #item-4:checked ~ #player #item-1-text,
+  #item-5:checked ~ #player #item-3-text {
+    transform: translatex(-75%) scale(.5);
+    opacity: .2;
+  }
 
 
+  #item-1:checked ~ #player #item-4-text,
+  #item-2:checked ~ #player #item-3-text,
+  #item-3:checked ~ #player #item-5-text,
+  #item-4:checked ~ #player #item-2-text,
+  #item-5:checked ~ #player #item-1-text {
+    transform: translatex(-325%) scale(.5);
+    opacity: .2;
+  }
 
-  #item-1:checked ~ #player .texts #item-3-text, #item-2:checked ~ #player .texts #item-1-text, #item-3:checked ~ #player .texts #item-2-text {
-    transform: translatex(-300%) scale(.8);
+  #item-1:checked ~ #player #item-3-text,
+  #item-2:checked ~ #player #item-1-text,
+  #item-3:checked ~ #player #item-4-text,
+  #item-4:checked ~ #player #item-5-text,
+  #item-5:checked ~ #player #item-2-text {
+    transform: translatex(-275%) scale(.8);
     opacity: .4;
     z-index: 0;
   }
   
-  #item-1:checked ~ #player .texts #item-2-text, #item-2:checked ~ #player .texts #item-3-text, #item-3:checked ~ #player .texts #item-1-text {
-    transform: translatex(-100%) scale(.8);
+  #item-1:checked ~ #player #item-2-text,
+  #item-2:checked ~ #player #item-5-text,
+  #item-3:checked ~ #player #item-1-text,
+  #item-4:checked ~ #player #item-3-text,
+  #item-5:checked ~ #player #item-4-text {
+    transform: translatex(-125%) scale(.8);
     opacity: .4;
     z-index: 0;
   }
   
-  #item-1:checked ~ #player .texts #item-1-text, #item-2:checked ~ #player .texts #item-2-text, #item-3:checked ~ #player .texts #item-3-text {
+  #item-1:checked ~ #player #item-1-text,
+  #item-2:checked ~ #player #item-2-text,
+  #item-3:checked ~ #player #item-3-text,
+  #item-4:checked ~ #player #item-4-text,
+  #item-5:checked ~ #player #item-5-text{
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -88,6 +158,7 @@
     z-index: 1;
   }
   
+
 
   
 

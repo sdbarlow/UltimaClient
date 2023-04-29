@@ -11,7 +11,7 @@ function Header() {
         </div>
         <div className="flex w-64 justify-between items-center">
           <a className="hover:cursor-pointer hover:text-lg">Home</a>
-          <a className="hover:cursor-pointer hover:text-lg">Models</a>
+          <a href="#prompt" className="hover:cursor-pointer hover:text-lg">Models</a>
           <a className="hover:cursor-pointer hover:text-lg">Locations</a>
         </div>
         <div className="flex w-64 justify-start items-center">
