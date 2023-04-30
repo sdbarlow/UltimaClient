@@ -78,7 +78,8 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center w-screen h-screen overflow-hidden bg-black">
-              <h1 className='text-white text-6xl'>Locations</h1>
+              <h1 className='text-white text-6xl pt-16'>Browse By Location</h1>
+              <img className="w-full h-full object-cover" src="/UnitedStates.jpg" alt="map" />
             </div>
     </>
   )

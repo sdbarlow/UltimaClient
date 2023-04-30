@@ -19,6 +19,21 @@
     font-family: 'Chakra Petch', sans-serif;
   }
 
+  .form-text{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
+  
+  .form-head{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
+  .form-submit{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
   #prompt{
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 500;

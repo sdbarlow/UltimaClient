@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image'
+import Link from 'next/link';
 
 function Header() {
   return (
@@ -16,7 +17,7 @@ function Header() {
         </div>
         <div className="flex w-64 justify-start items-center">
           <a className="pl-10">Sign Up</a>
-          <button className='shadow-2xl bg-black text-white ml-8 py-3 px-5 rounded-md m-3 active:bg-yellow-500 active:text-black'>Register</button>
+          <Link href="/SignUp" className='shadow-2xl bg-black text-white ml-8 py-3 px-5 rounded-md m-3 active:bg-yellow-500 active:text-black'>Register</Link>
         </div>
       </div>
     </div>
