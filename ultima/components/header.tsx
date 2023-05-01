@@ -13,7 +13,7 @@ function Header() {
         <div className="flex w-64 justify-between items-center">
           <a className="hover:cursor-pointer hover:text-lg">Home</a>
           <a href="#prompt" className="hover:cursor-pointer hover:text-lg">Models</a>
-          <a className="hover:cursor-pointer hover:text-lg">Locations</a>
+          <a href="#loc-header" className="hover:cursor-pointer hover:text-lg">Locations</a>
         </div>
         <div className="flex w-64 justify-start items-center">
           <a className="py-2 px-7 hover:border-2 hover:border-black hover:rounded-md hover:cursor-pointer">Log In</a>

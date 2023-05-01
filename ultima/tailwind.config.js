@@ -38,14 +38,30 @@ module.exports = {
             '0%': {opacity: '0%'},
             '50%': {opacity: '0%'},
             '100%': {opacity: '100%'}
-          }
+          },
+          'comeup': {
+            '0%': { transform: 'translateY(100px)',
+            opacity: '0%' },
+            '100%': { transform: 'translateY(0px)',
+            opacity: '100%' }
+          },
+          'comedown': {
+            '0%': { 
+            transform: 'translate(-50%, -50%) translateY(-200px)',
+            opacity: '0%' },
+            '100%': { transform: 'translateY(0px)',
+            transform: 'translate(-50%, -50%) translateY(0px)',
+            opacity: '100%' }
+          },
       },
       animation: {
         headerdown: 'headerdown 2s ease-out',
         bodyshrink: 'bodyshrink 2s ease-out',
         hide: 'hide 3s ease-out',
         reveal: 'reveal 5s ease-out', // added 3s delay
-        drive: 'drive 5s ease-out'
+        drive: 'drive 5s ease-out',
+        comeup: 'comeup 4s ease-out',
+        comedown: 'comedown 4s ease-out'
       }
     },
   },
