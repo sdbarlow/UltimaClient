@@ -3,6 +3,8 @@ import * as yup from "yup";
 import React from 'react'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
+import { AiOutlineRollback } from "react-icons/ai";
+import Link from "next/link";
 
 
 function SignUp() {
@@ -61,7 +63,10 @@ function SignUp() {
         <div className='min-h-screen bg-black flex items-center justify-center'>
         <div className='w-full max-w-sm'>
             <div className='bg-white rounded-md shadow-lg p-6'>
-            <h2 className='form-head text-2xl text-center font-bold mb-4'>Sign Up</h2>
+            <h2 className='form-head text-2xl text-center font-bold mb-4' style={{ display: 'flex', alignItems: 'center' }}>
+              <Link className="group" href="/"><AiOutlineRollback className="h-6 w-6 group-hover:h-8 group-hover:w-8" /></Link>
+              <span className="ml-24 group-hover:ml-16" >Sign Up</span>
+            </h2>
             <form onSubmit={formik.handleSubmit} className='space-y-4'>
                 <div className='flex flex-col'>
                 <label className='form-text mb-1' htmlFor='name'>First Name</label>

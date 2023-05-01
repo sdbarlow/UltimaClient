@@ -16,8 +16,8 @@ function Header() {
           <a className="hover:cursor-pointer hover:text-lg">Locations</a>
         </div>
         <div className="flex w-64 justify-start items-center">
-          <a className="pl-10">Sign Up</a>
-          <Link href="/SignUp" className='shadow-2xl bg-black text-white ml-8 py-3 px-5 rounded-md m-3 active:bg-yellow-500 active:text-black'>Register</Link>
+          <a className="py-2 px-7 hover:border-2 hover:border-black hover:rounded-md hover:cursor-pointer">Log In</a>
+          <Link href="/SignUp" className='shadow-2xl bg-black text-white ml-8 py-3 px-5 rounded-md m-3 active:text-black hover:bg-white hover:text-black hover:shadow-inner hover:border-2 hover:border-black'>Register</Link>
         </div>
       </div>
     </div>
