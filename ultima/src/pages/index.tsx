@@ -2,11 +2,21 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '../../components/header'
 import { FiMapPin } from "react-icons/fi";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import useUltimaStore from '../../store/store'
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export default function Home() {
+  const user = useUltimaStore(state => state.user);
+  const [mounted, setMounted] = useState(false);
+  console.log(user)
+
+useEffect(() => {
+
+  setMounted(true);
+
   if (typeof window !== 'undefined') {
     window.addEventListener('scroll', function() {
       let radio = document.getElementById('item-1');
@@ -21,9 +31,7 @@ export default function Home() {
       }
     });
 }
-
-
-
+},[])
 
 useEffect(() => {
   if(typeof document !== 'undefined'){
@@ -31,44 +39,49 @@ useEffect(() => {
     const targetElement = document.getElementById('loc-header');
   
     // Create the observer for the target element
-    const targetObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Add the animation class when the target element comes into view
-          elementToAnimate.classList.add('animate-comeup');
-        }
+    if (elementToAnimate && targetElement) {
+      const targetObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add the animation class when the target element comes into view
+            elementToAnimate.classList.add('animate-comeup');
+          }
+        });
       });
-    });
-  
-    // Observe the target element
-    targetObserver.observe(targetElement);
+      targetObserver.observe(targetElement);
+    }
 
     if (typeof document !== 'undefined') {
       const elementsToAnimate = document.getElementsByClassName('map-pin');
       const targetElement = document.getElementById('loc-header');
       // Create the observer
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Add the animation class to the elements to animate when the target element comes into view
-            for (let i = 0; i < elementsToAnimate.length; i++) {
-              elementsToAnimate[i].classList.add('animate-comedown');
+      if (elementToAnimate && targetElement) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Add the animation class to the elements to animate when the target element comes into view
+              for (let i = 0; i < elementsToAnimate.length; i++) {
+                elementsToAnimate[i].classList.add('animate-comedown');
+              }
             }
-          }
+          });
         });
-      });
-      
-      // Observe the target element
-      observer.observe(targetElement);
+        observer.observe(targetElement);
+      }
     }
   }
-}, [])
+}, [mounted]);
 
+
+
+
+if (!mounted) return null;
 
   return (
     <>
       <Header/>
       <div className='flex justify-center items-end text-gray-900 bg-black h-screen flex-col w-screen animate-bodyshrink' style={{ height: `calc(100vh - 6rem)` }}>
+      {user ? <h1 className='mx-auto text-white animate-reveal'>Welcome, {user.data.first_name}!</h1> : null}
               <div className='flex w-3/5 pt-32 pr-16'>
                 <img className="animate-drive brightness-125 object-cover hidden" src='/KoenigseggSide.png' alt="me"/>
                 <img className="brightness-125 object-cover" src='/KoenigseggDiag.png' alt=""/>

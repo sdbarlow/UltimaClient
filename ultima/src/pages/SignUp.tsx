@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { AiOutlineRollback } from "react-icons/ai";
 import Link from "next/link";
+import useUltimaStore from '../../store/store'
 
 
 function SignUp() {
     const router = useRouter();
     const [refreshPage, setRefreshPage] = useState(false);
+    const setUser = useUltimaStore((state) => state.setUser);
 
     useEffect(() => {
         console.log("FETCH! ");
@@ -53,7 +55,11 @@ function SignUp() {
             body: formData,
           }).then((res) => {
             if (res.status == 201) {
-                router.push('/')
+                res.json()
+                .then((data) => {
+                  setUser({ data });
+                  router.push('/')
+                })
             }
           });
         },
@@ -124,6 +130,12 @@ function SignUp() {
                 Submit
                 </button>
                 </div>
+                <div className="text-center mt-4">
+                    Already have an account?{" "}
+                    <Link className="hover:text-blue-400" href="/LogIn">
+                    Log in
+                  </Link>
+                  </div>
             </form>
             </div>
         </div>
