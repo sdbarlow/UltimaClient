@@ -18,8 +18,10 @@ module.exports = {
           '100%': { height: 'full' }
         },
         'bodyshrink': {
-          '0%': {height: '100vh'},
-          '100%': {height: `calc(100vh - 6rem)`}
+          '0%': {height: '100vh',
+                width: '100vw'},
+          '100%': {height: `calc(100vh - 6rem)`,
+          width: '100vw'}
         },
         'drive': {
           '0%': { transform: 'translateX(1000px)',

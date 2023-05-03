@@ -80,14 +80,18 @@ if (!mounted) return null;
   return (
     <>
       <Header/>
-      <div className='flex justify-center items-end text-gray-900 bg-black h-screen flex-col w-screen animate-bodyshrink' style={{ height: `calc(100vh - 6rem)` }}>
-      {user ? <h1 className='mx-auto text-white animate-reveal'>Welcome, {user.data.first_name}!</h1> : null}
-              <div className='flex w-3/5 pt-32 pr-16'>
-                <img className="animate-drive brightness-125 object-cover hidden" src='/KoenigseggSide.png' alt="me"/>
-                <img className="brightness-125 object-cover" src='/KoenigseggDiag.png' alt=""/>
+      {/* {user ? <h1 className='mx-auto text-white animate-reveal'>Welcome, {user.data.first_name}!</h1> : null} */}
+      <div className='flex justify-center text-gray-900 bg-black w-screen border-2 border-red-400' style={{ height: `calc(100vh - 6rem)` }}>
+              <div className='flex flex-col justify-center pl-64 border-2 border-blue-400 w-full items-start'>
+              <h1 className='text-white text-2xl'>Plan your trip now</h1><br/>
+                <h1 className='text-white text-5xl'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
+                <h1 className='text-white'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
               </div>
+              {/* <div className='justify-center items-end w-full pr-64 border-2 border-orange-600 hidden lg:flex'>
+                <Image priority className="brightness-125 object-cover" src='/Koenigsegg.png' width={900} height={500} alt=""/>
+              </div> */}
               </div>
-            <div className="flex justify-center items-center w-screen h-screen overflow-hidden bg-black">
+            <div className="flex justify-center pl-64 pr-64 items-center w-screen h-screen bg-black">
             <div className="w-full max-w-3xl max-h-fit h-4/5 flex justify-center flex-col items-center ">
               <h1 id="prompt" className='pb-16 text-6xl'>Browse By Make</h1>
               <input type="radio" name="slider" id="item-1"/>
@@ -97,19 +101,19 @@ if (!mounted) return null;
               <input type="radio" name="slider" id="item-5"/>
             <div className="cards">
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
-                <img className="w-full h-full object-cover" src="/LamborghiniLogo.png" alt="song"/>
+                <Image className="w-full h-full object-cover" width={500} height={300} src="/LamborghiniLogo.png" alt="song"/>
               </label>
               <label className="absolute w-3/6 left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
-                <img className="w-fit h-10/12" src="/PorscheLogo.png" alt="song"/>
+                <Image className="w-fit h-10/12" src="/PorscheLogo.png" width={500} height={300}  alt="song"/>
               </label>
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-3" id="item-3-photo">
-                <img className="w-full h-full object-cover" src="/KoenigseggLogo.png" alt="song"/>
+                <Image className="w-full h-full object-cover" src="/KoenigseggLogo.png" width={500} height={300}  alt="song"/>
               </label>
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-4" id="item-4-photo">
-                <img className="w-fit h-full object-cover pl-12" src="/Ferrar.png" alt="song"/>
+                <Image className="w-fit h-full object-cover pl-12" src="/Ferrar.png" width={500} height={300}  alt="song"/>
               </label>
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-5" id="item-5-photo">
-                <img className="w-full h-full object-cover" src="/Mercedes.png" alt="song"/>
+                <Image className="w-full h-full object-cover" src="/Mercedes.png" width={500} height={300}  alt="song"/>
               </label>
             </div>
             <div id="player" className="w-full max-w-3xl max-h-fit h-1/5 flex justify-center items-center ">
@@ -136,26 +140,26 @@ if (!mounted) return null;
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center w-screen h-screen overflow-hidden bg-black">
+            <div className="flex flex-col justify-center pl-64 pr-64 w-vw h-vh overflow-hidden bg-black">
               <div className="flex justify-center w-full h-2/4">
               <h1 id='loc-header' className='loc-header text-white text-center pt-16 text-6xl'>Browse By Location</h1>
               </div>
               <div className="relative m-auto w-fit h-3/4">
-              <img id="usmap" className="w-full h-full object-contain brightness-200" src="/UnitedStates.jpg" alt="map" />
+              <Image id="usmap" className="w-full h-full object-contain brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
               <div id='parent-1' className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-800 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
               <div id='parent-3' className="map-pin absolute group hover:cursor-pointer hover:right-[83%] top-[50%] right-[84%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-800 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
               <div id='parent-5' className="map-pin absolute group hover:cursor-pointer hover:right-[12%] top-[77%] right-[13%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-800 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
               <div id='parent-7' className="map-pin absolute group hover:cursor-pointer hover:right-[77.5%] top-[45%] right-[78.5%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-800 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
               <div id='parent-9' className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="absolute text-blue-800 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <FiMapPin className="absolute text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
               <div id='parent-10' className="absolute top-[37%] right-[-91%] transform -translate-x-1/2 -translate-y-1/2">
                 <svg height="50" width="500">
@@ -214,7 +218,6 @@ if (!mounted) return null;
               </div>
             </div>
             </div>
-
-    </>
+        </>
   )
 }
