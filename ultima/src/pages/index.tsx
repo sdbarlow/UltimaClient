@@ -2,15 +2,20 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '../../components/header'
 import { FiMapPin } from "react-icons/fi";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import useUltimaStore from '../../store/store'
+import Koenigsegg from '../../public/KoenigseggDiag.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
+  const setUser = useUltimaStore((state) => state.setUser)
   const user = useUltimaStore(state => state.user);
+  const setDropDown = useUltimaStore((state) => state.setDropDown);
+  const dropdown = useUltimaStore((state) => state.dropdown)
   const [mounted, setMounted] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   console.log(user)
 
 useEffect(() => {
@@ -72,6 +77,23 @@ useEffect(() => {
   }
 }, [mounted]);
 
+useEffect(() => {
+  const handleClickOutside = (event: any) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropDown(false);
+    }
+  };
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [dropdownRef]);
+
+function logOut(){
+  console.log('hello')
+  setUser(null)
+  setDropDown(!dropdown)
+}
 
 
 
@@ -80,16 +102,27 @@ if (!mounted) return null;
   return (
     <>
       <Header/>
-      {/* {user ? <h1 className='mx-auto text-white animate-reveal'>Welcome, {user.data.first_name}!</h1> : null} */}
-      <div className='flex justify-center text-gray-900 bg-black w-screen border-2 border-red-400' style={{ height: `calc(100vh - 6rem)` }}>
-              <div className='flex flex-col justify-center pl-64 border-2 border-blue-400 w-full items-start'>
+      <div className='text-center'>
+      {dropdown && (
+        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-6 right-0 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-8px] lg:mr-72 top-20 text-sm">
+          <button className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</button>
+          <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
+          <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
+            Log Out
+          </button>
+        </div>
+      )}
+      {user ? <h1 id='wel-text' className='opacity-0 text-white animate-reveal h-0 tracking-widest bg-black'>Welcome, {user.data.first_name}!</h1> : null}
+      </div>
+      <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)` }}>
+              <div className='flex flex-col justify-center pl-64 w-full items-start'>
               <h1 className='text-white text-2xl'>Plan your trip now</h1><br/>
                 <h1 className='text-white text-5xl'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
                 <h1 className='text-white'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
               </div>
-              {/* <div className='justify-center items-end w-full pr-64 border-2 border-orange-600 hidden lg:flex'>
-                <Image priority className="brightness-125 object-cover" src='/Koenigsegg.png' width={900} height={500} alt=""/>
-              </div> */}
+              <div className='justify-center items-end w-full pr-64 hidden lg:flex'>
+                <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={500} alt=""/>
+              </div>
               </div>
             <div className="flex justify-center pl-64 pr-64 items-center w-screen h-screen bg-black">
             <div className="w-full max-w-3xl max-h-fit h-4/5 flex justify-center flex-col items-center ">

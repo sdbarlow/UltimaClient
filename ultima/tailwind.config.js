@@ -38,8 +38,20 @@ module.exports = {
           },
           'reveal': {
             '0%': {opacity: '0%'},
-            '50%': {opacity: '0%'},
-            '100%': {opacity: '100%'}
+            '50%': {opacity: '100%'},
+            '100%': {opacity: '0%'}
+          },
+          'slideout': {
+            '0%' : { transform: 'scale(1)',
+            opacity: '75%' },
+            '25%' : { transform: 'translateX(0px) scale(0.7)',
+            opacity: '75%'},
+            '75%' : {
+              transform: 'translateX(-60vw) scale(0.7)',
+              opacity: '75%'
+            },
+            '100%' : { transform: 'translateX(-60vw) scale(1)',
+            opacity: '100%'}
           },
           'comeup': {
             '0%': { transform: 'translateY(100px)',
@@ -57,6 +69,7 @@ module.exports = {
           },
       },
       animation: {
+        slideout: 'slideout 3s ease-out',
         headerdown: 'headerdown 2s ease-out',
         bodyshrink: 'bodyshrink 2s ease-out',
         hide: 'hide 3s ease-out',

@@ -2,11 +2,47 @@ import React from 'react'
 import { AiOutlineRollback } from "react-icons/ai";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/router'
+import useUltimaStore from '../../store/store'
 
 function LogIn() {
-   const [emailinput, setEmailInput] = useState('')
-   const [passwordinput, setPasswordInput] = useState('')
+    interface FormData {
+        email: string;
+        password: string;
+      }
+      
+    const [formData, setFormData] = useState<FormData>({ email: '', password: '' });
+   const setUser = useUltimaStore((state) => state.setUser);
+   const router = useRouter()
 
+   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    } as FormData);
+  };
+
+  function logIn(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    console.log(formData)
+    fetch('https://ultima-appp.onrender.com/login', {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          res.json()
+          .then((data) => {
+            console.log('hello')
+            setUser({ data });
+            router.push('/');
+          });
+        }
+      });
+  }
+  
 
   return (
     <div className='min-h-screen bg-black flex items-center justify-center'>
@@ -20,24 +56,25 @@ function LogIn() {
                     Log In
                 </span>
                 </h2>
-                <form className='space-y-4'>
+                <form onSubmit={(e) => logIn(e)} className='space-y-4'>
                     <div className='flex flex-col'>
                         <label className='form-text mb-1' htmlFor='name'>Email</label>
                         <input
-                            id='first_name'
-                            name='first_name'
-                            onChange={(e) => setEmailInput(e.target.value)}
-                            value={emailinput}
+                            id='email'
+                            name='email'
+                            onChange={handleInputChange}
+                            value={formData.email}
                             className='border border-gray-400 p-2 rounded-md focus:border-dashed focus:outline-none focus:border-black'
                         />
                     </div>
                     <div className='flex flex-col'>
                         <label className='form-text mb-1' htmlFor='name'>Password</label>
                         <input
-                            id='first_name'
-                            name='first_name'
-                            onChange={(e) => setPasswordInput(e.target.value)}
-                            value={passwordinput}
+                            id='password'
+                            name='password'
+                            type='password'
+                            onChange={handleInputChange}
+                            value={formData.password}
                             className='border border-gray-400 p-2 rounded-md focus:border-dashed focus:outline-none focus:border-black'
                         />
                     </div>

@@ -3,19 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5){
-
-  #html,
-  #body{
-    width:100%;
-    overflow-x:hidden;
-  }
-
-}
   
   #header {
     background: linear-gradient(to right, #ffffff, #C9BFC0);
@@ -159,6 +146,19 @@ only screen and (min-device-pixel-ratio: 1.5){
   .loc-text{
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 300;
+  }
+
+  #wel-text{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
+
+  #platform{
+    height:80vh;
+    width:100vw;
+    margin-top: 0;
+    border-radius: 100%;
+    background-color: white;
   }
 
   #parent-1:hover ~ #parent-2,
