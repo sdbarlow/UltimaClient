@@ -349,7 +349,52 @@
     opacity: 1;
     z-index: 1;
   }
+
+  #car-3:checked ~ #platform #car-5-photo,
+  #car-2:checked ~ #platform #car-5-photo,
+  #car-2:checked ~ #platform #car-4-photo,
+  #car-1:checked ~ #platform #car-3-photo,
+  #car-1:checked ~ #platform #car-4-photo,
+  #car-1:checked ~ #platform #car-5-photo{
+    transform: translatex(275%);
+  }
+
+  #car-3:checked ~ #platform #car-1-photo,
+  #car-4:checked ~ #platform #car-2-photo,
+  #car-4:checked ~ #platform #car-1-photo,
+  #car-5:checked ~ #platform #car-3-photo,
+  #car-5:checked ~ #platform #car-2-photo,
+  #car-5:checked ~ #platform #car-1-photo{
+    transform: translatex(-275%);
+  }
+
+  #car-2:checked ~ #platform #car-1-photo,
+  #car-3:checked ~ #platform #car-2-photo,
+  #car-4:checked ~ #platform #car-3-photo,
+  #car-5:checked ~ #platform #car-4-photo{
+    transform: translatex(-125%);
+  }
+
+  #car-1:checked ~ #platform #car-2-photo,
+  #car-2:checked ~ #platform #car-3-photo,
+  #car-3:checked ~ #platform #car-4-photo,
+  #car-4:checked ~ #platform #car-5-photo{
+    transform: translatex(125%);
+  }
   
+  #car-1:checked ~ #platform #car-1-photo,
+  #car-2:checked ~ #platform #car-2-photo,
+  #car-3:checked ~ #platform #car-3-photo,
+  #car-4:checked ~ #platform #car-4-photo,
+  #car-5:checked ~ #platform #car-5-photo{
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    padding-left: 10px;
+    opacity: 1;
+    z-index: 1;
+  }
 
 
   

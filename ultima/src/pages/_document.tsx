@@ -5,7 +5,7 @@ export default function Document() {
     <Html id='html' className='m-0 p-0 scroll-smooth' lang="en">
       <Head />
       <body id='body' className='m-0 p-0'>
-        <div className='relative overflow-x-hidden'>
+        <div className='relative overflow-x-hidden overflow-y-hidden'>
         <Main />
         <NextScript />
         </div>
