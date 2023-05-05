@@ -396,6 +396,7 @@
     z-index: 1;
   }
 
-
-  
-
+  .slant-container{
+    -webkit-backface-visibility : hidden; /* the magic ingredient */
+    overflow: hidden;
+  }
