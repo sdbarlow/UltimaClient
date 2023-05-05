@@ -396,7 +396,23 @@
     z-index: 1;
   }
 
+  .showcase {
+    display: flex;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+
+  .showcase.active {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+
+
   .slant-container{
-    -webkit-backface-visibility : hidden; /* the magic ingredient */
-    overflow: hidden;
+    -webkit-backface-visibility : hidden;
+    overflow: hidden; 
   }

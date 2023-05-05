@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Ferrari from '../../public/FerrariDiag.png'
@@ -28,23 +28,104 @@ const Header = dynamic(() => import('../../components/header'), {
 
 
 function browse() {
+
+  useEffect(() => {
+
+    const carInputs = [
+      document.querySelector('#car-1'),
+      document.querySelector('#car-2'),
+      document.querySelector('#car-3'),
+      document.querySelector('#car-4'),
+      document.querySelector('#car-5')
+    ];
+    
+    const showcaseDivs = [
+      document.querySelector('#ferarri-showcase'),
+      document.querySelector('#mercedes-showcase'),
+      document.querySelector('#koenigsegg-showcase'),
+      document.querySelector('#lamborghini-showcase'),
+      document.querySelector('#porsche-showcase')
+    ];
+    
+    carInputs.forEach((input, index) => {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          // Remove the "active" class from all showcases
+          showcaseDivs.forEach((showcaseDiv) => {
+            showcaseDiv.classList.remove('active');
+          });
+          // Add the "active" class to the corresponding showcase
+          showcaseDivs[index].classList.add('active');
+        }
+      });
+    });
+    
+    
+  
+
+  }, [])
+
+
   return (
   <>
     <Header/>
     <div className='flex flex-col justify-center w-full bg-black overflow-hidden overflow-y-hidden' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='display' className='flex flex-col h-5/6 w-screen bg-gradient-to-t from-black to-white'>
-        <div id='pic-showcase' className='flex h-1/2 w-full justify-center'>
-        <div className='slant-container h-full w-1/6 mr-8 mt-24 -skew-x-12'>
+        <div id='ferarri-showcase' className='showcase flex h-1/2 mt-0 w-full justify-center'>
+        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+              <Image src={Ferarribg1} className='object-fill' alt='ferrari' width={900} height={300}/>
+            </div>
+          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+            <Image src={Ferarribg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
+          </div>
+          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+            <Image src={Ferarribg3} className='object-fill' alt='ferrari' width={900} height={300}/>
+          </div>
+        </div>
+        <div id='mercedes-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+              <Image src={Mercedesbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
+            </div>
+          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+            <Image src={Mercedesbg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
+          </div>
+          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+            <Image src={Mercedesbg3} className='object-fill' alt='ferrari' width={900} height={300}/>
+          </div>
+        </div>
+        <div id='koenigsegg-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+              <Image src={Koenigseggbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
+            </div>
+          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+            <Image src={Koenigseggbg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
+          </div>
+          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+            <Image src={Koenigseggbg3} className='object-fill' alt='ferrari' width={900} height={300}/>
+          </div>
+        </div>
+        <div id='lamborghini-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Lamborghinibg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 mt-12 -skew-x-12'>
+          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
             <Image src={Lamborghinibg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 mt-12 -skew-x-12'>
+          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
             <Image src={Lamborghinibg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
-
-        </div>
+          </div>
+          <div id='porsche-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+              <Image src={Porschebg1} className='object-fill' alt='ferrari' width={900} height={300}/>
+            </div>
+          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+            <Image src={Porschebg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
+          </div>
+          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+            <Image src={Porschebg3} className='object-fill' alt='ferrari' width={900} height={300}/>
+          </div>
+          </div>
         <div id='pic-platform' className='h-1/2 z-10 w-full'>
               <input type="radio" name="slider" id="car-1" defaultChecked/>
               <input type="radio" name="slider" id="car-2"/>
@@ -71,7 +152,6 @@ function browse() {
         </div>
       </div>
       <div id='footer' className='h-1/6 w-screen bg-white overflow-hidden'>
-
       </div>
     </div>
   </>
