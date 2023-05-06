@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Ferrari from '../../public/FerrariDiag.png'
@@ -28,6 +29,7 @@ const Header = dynamic(() => import('../../components/header'), {
 
 
 function browse() {
+  const router = useRouter()
 
   useEffect(() => {
 
@@ -38,6 +40,14 @@ function browse() {
       document.querySelector('#car-4'),
       document.querySelector('#car-5')
     ];
+
+    const carImages = [
+      document.querySelector('#ferarri-img'),
+      document.querySelector('#mercedes-img'),
+      document.querySelector('#koenigsegg-img'),
+      document.querySelector('#lamborghini-img'),
+      document.querySelector('#porsche-img')
+    ]
     
     const showcaseDivs = [
       document.querySelector('#ferarri-showcase'),
@@ -58,6 +68,7 @@ function browse() {
     carInputs.forEach((input, index) => {
       showcaseDivs[0]?.classList.add('active');
       bulletDivs[0]?.classList.add('active')
+      carImages[0]?.addEventListener('click', handleClick)
       input.addEventListener('change', () => {
         if (input.checked) {
           // Remove the "active" class from all showcases
@@ -66,10 +77,14 @@ function browse() {
           });
           bulletDivs.forEach((bulletDiv) => {
             bulletDiv?.classList.remove('active')
+          });
+          carImages.forEach((carImage) => {
+            carImage?.removeEventListener('click', handleClick);
           })
           // Add the "active" class to the corresponding showcase
           showcaseDivs[index].classList.add('active');
-          bulletDivs[index].classList.add('active')
+          bulletDivs[index].classList.add('active');
+          carImages[index].addEventListener('click', handleClick);
         }
       });
     });
@@ -78,6 +93,11 @@ function browse() {
   
 
   }, [])
+
+  function handleClick() {
+    router.push('/inspect')
+  }
+  
 
 
   return (
@@ -153,19 +173,19 @@ function browse() {
               <input type="radio" name="slider" id="car-5"/>
           <div id='platform' className='flex justify-center items-start overflow-hidden'>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-1" id="car-1-photo">
-            <Image src={Ferrari} className='object-cover' alt='ferrari' quality="100" width={800} height={300}/>
+            <Image id='ferarri-img' src={Ferrari} className='object-cover' alt='ferrari' quality="100" width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-2" id="car-2-photo">
-            <Image className="object-cover" src={Mercedes} alt='mercedes' quality='100' width={700} height={300}/>
+            <Image id='mercedes-img' className="object-cover" src={Mercedes} alt='mercedes' quality='100' width={700} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-3" id="car-3-photo">
-            <Image className='object-cover' src={Koenigsegg} alt='koenigsegg' quality='100' width={800} height={300}/>
+            <Image id='koenigsegg-img' className='object-cover' src={Koenigsegg} alt='koenigsegg' quality='100' width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-4" id="car-4-photo">
-            <Image src={Lamborghini} className='object-cover' alt='lamb' width={800} height={300}/>
+            <Image id='lamborghini-img' src={Lamborghini} className='object-cover' alt='lamb' width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-5" id="car-5-photo">
-            <Image src={Porsche} className='object-cover' alt='porsche' width={800} height ={300} />
+            <Image id='porsche-img' src={Porsche} className='object-cover' alt='porsche' width={800} height ={300} />
             </label>
           </div>
         </div>
