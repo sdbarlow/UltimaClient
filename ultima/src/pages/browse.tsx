@@ -46,16 +46,30 @@ function browse() {
       document.querySelector('#lamborghini-showcase'),
       document.querySelector('#porsche-showcase')
     ];
+
+    const bulletDivs = [
+      document.querySelector('#bullet1'),
+      document.querySelector('#bullet2'),
+      document.querySelector('#bullet3'),
+      document.querySelector('#bullet4'),
+      document.querySelector('#bullet5')
+    ]
     
     carInputs.forEach((input, index) => {
+      showcaseDivs[0]?.classList.add('active');
+      bulletDivs[0]?.classList.add('active')
       input.addEventListener('change', () => {
         if (input.checked) {
           // Remove the "active" class from all showcases
           showcaseDivs.forEach((showcaseDiv) => {
             showcaseDiv.classList.remove('active');
           });
+          bulletDivs.forEach((bulletDiv) => {
+            bulletDiv?.classList.remove('active')
+          })
           // Add the "active" class to the corresponding showcase
           showcaseDivs[index].classList.add('active');
+          bulletDivs[index].classList.add('active')
         }
       });
     });
@@ -72,6 +86,7 @@ function browse() {
     <div className='flex flex-col justify-center w-full bg-black overflow-hidden overflow-y-hidden' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='display' className='flex flex-col h-5/6 w-screen bg-gradient-to-t from-black to-white'>
         <div id='ferarri-showcase' className='showcase flex h-1/2 mt-0 w-full justify-center'>
+          <h1 className='showcase-text absolute left-50 z-10 text-6xl text-white tracking-widest mt-32'>Ferarri J50</h1>
         <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Ferarribg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
@@ -83,6 +98,7 @@ function browse() {
           </div>
         </div>
         <div id='mercedes-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+          <h1 className='showcase-text absolute left-50 z-10 text-6xl text-white tracking-widest mt-32'>Mercedes AMG</h1>
         <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Mercedesbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
@@ -94,6 +110,7 @@ function browse() {
           </div>
         </div>
         <div id='koenigsegg-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+          <h1 className='showcase-text absolute left-50 z-10 text-6xl text-white tracking-widest mt-32'>Koenigsegg Jesko</h1>
         <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Koenigseggbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
@@ -105,6 +122,7 @@ function browse() {
           </div>
         </div>
         <div id='lamborghini-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+          <h1 className='showcase-text absolute left-50 z-10 text-6xl text-white tracking-widest mt-32'>Lamborghini Murcielago</h1>
         <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Lamborghinibg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
@@ -115,7 +133,8 @@ function browse() {
             <Image src={Lamborghinibg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
           </div>
-          <div id='porsche-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+        <div id='porsche-showcase' className='showcase mt-12 absolute flex h-1/2 w-full justify-center'>
+          <h1 className='showcase-text absolute left-50 z-10 text-6xl text-white tracking-widest mt-32'>Porsche 918 Spyder</h1>
         <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
               <Image src={Porschebg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
@@ -151,7 +170,14 @@ function browse() {
           </div>
         </div>
       </div>
-      <div id='footer' className='h-1/6 w-screen bg-white overflow-hidden'>
+      <div id='footer' className='flex items-center justify-center h-1/6 w-screen bg-white overflow-hidden'>
+        <div className='w-1/6 h-full flex items-center justify-between'>
+          <div id='bullet1' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
+          <div id='bullet2' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
+          <div id='bullet3' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
+          <div id='bullet4' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
+          <div id='bullet5' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
+        </div>
       </div>
     </div>
   </>

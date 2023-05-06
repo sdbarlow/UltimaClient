@@ -410,6 +410,14 @@
     opacity: 1;
   }
 
+  .bullet.active {
+    background-color: #888;
+  }
+
+  .showcase-text {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
 
 
   .slant-container{
