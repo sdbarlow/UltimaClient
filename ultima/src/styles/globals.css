@@ -153,6 +153,21 @@
     font-weight: 300;
   }
 
+  #table-reserve{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
+  #table-price{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
+  #pick-description-table{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
+
   #platform{
     height:80vh;
     width:100vw;

@@ -16,7 +16,6 @@ export default function Home() {
   const dropdown = useUltimaStore((state) => state.dropdown)
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  console.log(user)
 
 useEffect(() => {
 
@@ -90,12 +89,9 @@ useEffect(() => {
 }, [dropdownRef]);
 
 function logOut(){
-  console.log('hello')
   setUser(null)
   setDropDown(!dropdown)
 }
-
-
 
 if (!mounted) return null;
 

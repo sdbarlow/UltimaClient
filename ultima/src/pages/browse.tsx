@@ -22,6 +22,7 @@ import Porschebg3 from '../../public/PorscheBG3.jpg'
 import Lamborghinibg1 from '../../public/LamborghiniBG1.jpg'
 import Lamborghinibg2 from '../../public/LamborghiniBG2.jpg'
 import Lamborghinibg3 from '../../public/LamborghiniBG3.jpg'
+import useUltimaStore from '../../store/store'
  
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
@@ -29,6 +30,8 @@ const Header = dynamic(() => import('../../components/header'), {
 
 
 function browse() {
+  const setCarToShow = useUltimaStore((state) => state.setCarToShow);
+  const setCar = useUltimaStore((state) => state.setCar);
   const router = useRouter()
 
   useEffect(() => {
@@ -42,11 +45,11 @@ function browse() {
     ];
 
     const carImages = [
-      document.querySelector('#ferarri-img'),
-      document.querySelector('#mercedes-img'),
-      document.querySelector('#koenigsegg-img'),
-      document.querySelector('#lamborghini-img'),
-      document.querySelector('#porsche-img')
+      document.querySelector('#ferarri'),
+      document.querySelector('#mercedes'),
+      document.querySelector('#koenigsegg'),
+      document.querySelector('#lamborghini'),
+      document.querySelector('#porsche')
     ]
     
     const showcaseDivs = [
@@ -94,8 +97,18 @@ function browse() {
 
   }, [])
 
-  function handleClick() {
-    router.push('/inspect')
+  function handleClick(e:any) {
+    setCarToShow(e.target.id);
+    fetch(`https://ultima-appp.onrender.com/cars/${e.target.title}`)
+      .then((res) => {
+        if (res.status === 200) {
+          res.json()
+          .then((data) => {
+            setCar({ data });
+            router.push('/inspect');
+          });
+        }
+      });
   }
   
 
@@ -173,19 +186,19 @@ function browse() {
               <input type="radio" name="slider" id="car-5"/>
           <div id='platform' className='flex justify-center items-start overflow-hidden'>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-1" id="car-1-photo">
-            <Image id='ferarri-img' src={Ferrari} className='object-cover' alt='ferrari' quality="100" width={800} height={300}/>
+            <Image id='ferarri' title='10' src={Ferrari} className='object-cover' alt='ferrari' quality="100" width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-2" id="car-2-photo">
-            <Image id='mercedes-img' className="object-cover" src={Mercedes} alt='mercedes' quality='100' width={700} height={300}/>
+            <Image id='mercedes' title='4' className="object-cover" src={Mercedes} alt='mercedes' quality='100' width={700} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-3" id="car-3-photo">
-            <Image id='koenigsegg-img' className='object-cover' src={Koenigsegg} alt='koenigsegg' quality='100' width={800} height={300}/>
+            <Image id='koenigsegg' title='11' className='object-cover' src={Koenigsegg} alt='koenigsegg' quality='100' width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-4" id="car-4-photo">
-            <Image id='lamborghini-img' src={Lamborghini} className='object-cover' alt='lamb' width={800} height={300}/>
+            <Image id='lamborghini' title='8' src={Lamborghini} className='object-cover' alt='lamb' width={800} height={300}/>
             </label>
             <label className='z-10 absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer' htmlFor="car-5" id="car-5-photo">
-            <Image id='porsche-img' src={Porsche} className='object-cover' alt='porsche' width={800} height ={300} />
+            <Image id='porsche' title='9' src={Porsche} className='object-cover' alt='porsche' width={800} height ={300} />
             </label>
           </div>
         </div>
