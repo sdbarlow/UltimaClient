@@ -29,6 +29,7 @@ import FerarriBack from '../../public/FerrariBack.png'
 import useUltimaStore from '../../store/store'
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { useEffect, useState } from 'react';
+import { date } from 'yup';
 
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
@@ -38,6 +39,38 @@ function inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
   const [toggle, setToggle] = useState(false)
+  const [totalPrice, setTotalPrice] = useState('')
+  const [selectedDateRange, setSelectedDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection'
+  });
+
+  function calculatePrice(startDate, endDate) {
+    const oneDay = 24 * 60 * 60 * 1000; 
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const days = Math.round(Math.abs((start - end) / oneDay)) + 1; 
+  
+    return days * car.data.price_per_day; 
+  }
+
+
+  const handleDateChange = (dateRange) => {
+    console.log("dateRange", dateRange);
+    const start = dateRange.startDate;
+    const end = dateRange.endDate;
+    console.log("startDate", start);
+    console.log(end)
+  
+    const price = calculatePrice(start, end);
+  
+    setSelectedDateRange(dateRange);
+  
+    setTotalPrice(price);
+  };
+  
+
     
       const [carImages, setCarImages] = useState({
         mercedes: {
@@ -132,7 +165,7 @@ console.log(car)
           <div id='pick-description-price' className='text-center p-4 bg-gradient-to-l from-slate-200 to-slate-400 text-2xl outline outline-black'>
             <span id='table-price'>${car.data.price_per_day} / Rent Per Day</span>
           </div>
-          {toggle ? <div className="h-full">      <Calendar value={Range} disabledDates={disabledDates} onChange={(value) => onChangeDate(value.selection)}/></div>: null}
+          {toggle ? <div className="h-full"><Calendar value={selectedDateRange} onChange={handleDateChange}/><p>Total Price: ${totalPrice}</p></div>: null}
           <div id='pick-description-table' className='grid grid-cols-2'>
             <div className="p-4 border border-black border-r-0"><span className='block border-r-2 border-black'>Make</span></div>
             <div className="p-4 border border-black border-l-0"><span>{car.data.make}</span></div>
