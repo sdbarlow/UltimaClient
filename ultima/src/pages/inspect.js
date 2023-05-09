@@ -1,6 +1,11 @@
 import React, { use } from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Calendar from '../../components/Calendar';
+import { Range } from "react-date-range";
+import moment from 'moment';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import MercedesFront from '../../public/MercedesFront.png'
 import MercedesDiag from '../../public/MercedesDiag.png'
 import MercedesSide from '../../public/MercedesSide.png'
@@ -32,6 +37,7 @@ const Header = dynamic(() => import('../../components/header'), {
 function inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
+  const [toggle, setToggle] = useState(false)
     
       const [carImages, setCarImages] = useState({
         mercedes: {
@@ -89,19 +95,23 @@ function inspect() {
         }
 }, [])
 
+function handleClick(){
+  setToggle(!toggle)
+}
+
 console.log(car)
     
   return (
     <>
     <Header/>
-    <div className='flex w-full shadow-inner bg-slate-50 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
+    <div className='flex w-full shadow-inner bg-slate-100 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='car-slides' className='flex justify-center items-center w-3/4 h-full shadow-inner shadow-black'>
         <div id='left-arrow' className='flex h-fit group hover:cursor-pointer mr-4'>
           <SlArrowLeft className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
         </div>
         <div id='image-container' className='flex flex-col w-3/4 h-full'>
           <div className='w-full flex justify-center items-center mb-10 mt-2 tracking-widest text-2xl'>
-            <h1>Porsche 918 Spyder</h1>
+            <h1 className='car-title'>{car.data.make} {car.data.model}</h1>
           </div>
         {typeof window !== 'undefined' && cartoshow ? 
         <>
@@ -122,6 +132,7 @@ console.log(car)
           <div id='pick-description-price' className='text-center p-4 bg-gradient-to-l from-slate-200 to-slate-400 text-2xl outline outline-black'>
             <span id='table-price'>${car.data.price_per_day} / Rent Per Day</span>
           </div>
+          {toggle ? <div className="h-full">      <Calendar value={Range} disabledDates={disabledDates} onChange={(value) => onChangeDate(value.selection)}/></div>: null}
           <div id='pick-description-table' className='grid grid-cols-2'>
             <div className="p-4 border border-black border-r-0"><span className='block border-r-2 border-black'>Make</span></div>
             <div className="p-4 border border-black border-l-0"><span>{car.data.make}</span></div>
@@ -136,7 +147,7 @@ console.log(car)
             <div className="p-4 border border-black border-r-0"><span className='block border-r-2 border-slate-300'>Availability</span></div>
             {car.data.availability ? <div className="p-4 border border-black border-l-0"><span>Available</span></div> : <div className="p-4 border border-black border-l-0"><span>Not Available</span></div>}
           </div>
-          <button id='table-reserve' className="bg-black text-slate-300 text-center w-full mt-4 p-4 text-2xl hover:text-3xl border-2 border-slate-300">Reserve Now</button>
+          <button id='table-reserve' onClick={handleClick} className="bg-black text-slate-300 text-center w-full mt-4 p-4 text-2xl hover:text-3xl border-2 border-slate-300">Reserve Now</button>
         </div>
       </div>
     </div>

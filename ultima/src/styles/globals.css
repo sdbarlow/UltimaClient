@@ -207,6 +207,11 @@
     color: white;
   }
 
+  .car-title{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
   .texts{
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 300;
