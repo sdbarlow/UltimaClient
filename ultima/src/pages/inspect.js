@@ -94,29 +94,32 @@ console.log(car)
   return (
     <>
     <Header/>
-    <div className='flex w-full' style={{ height: `calc(100vh - 6rem)` }}>
-      <div id='car-slides' className='flex justify-center items-center w-3/4 h-full'>
-        <div id='left-arrow' className='flex h-fit group hover:cursor-pointer'>
+    <div className='flex w-full shadow-inner bg-slate-50 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
+      <div id='car-slides' className='flex justify-center items-center w-3/4 h-full shadow-inner shadow-black'>
+        <div id='left-arrow' className='flex h-fit group hover:cursor-pointer mr-4'>
           <SlArrowLeft className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
         </div>
-        <div id='image-container' className='flex w-3/4 h-2/3 '>
+        <div id='image-container' className='flex flex-col w-3/4 h-full'>
+          <div className='w-full flex justify-center items-center mb-10 mt-2 tracking-widest text-2xl'>
+            <h1>Porsche 918 Spyder</h1>
+          </div>
         {typeof window !== 'undefined' && cartoshow ? 
         <>
-          <Image src={carImages[cartoshow].front} className='object-fit brightness-125' height={900} width={900} alt='mercedes' key="front"/>
-          <Image src={carImages[cartoshow].diag} className='object-fit brightness-125 hidden' height={900} width={900} alt='mercedes' key="diag"/>
-          <Image src={carImages[cartoshow].side} className='object-fit brightness-125 hidden' height={900} width={900} alt='mercedes' key="side"/>
-          <Image src={carImages[cartoshow].back} className='object-fit brightness-125 hidden' height={900} width={900} alt='mercedes' key="back"/>
+          <Image src={carImages[cartoshow].front} className='object-fit brightness-125 select-none' height={900} width={900} alt='mercedes' key="front"/>
+          <Image src={carImages[cartoshow].diag} className='object-fit brightness-125 select-none hidden' height={900} width={900} alt='mercedes' key="diag"/>
+          <Image src={carImages[cartoshow].side} className='object-fit brightness-125 select-none hidden' height={900} width={900} alt='mercedes' key="side"/>
+          <Image src={carImages[cartoshow].back} className='object-fit brightness-125 select-none hidden' height={900} width={900} alt='mercedes' key="back"/>
         </>
         : <p>Loading...</p>
       }
         </div>
-        <div id='right-arrow' className='flex h-fit group hover:cursor-pointer'>
+        <div id='right-arrow' className='flex h-fit group hover:cursor-pointer ml-4'>
           <SlArrowRight className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
         </div>
       </div>
-      <div id='car-stats' className='flex w-1/4 h-full items-center'>
+      <div id='car-stats' className='flex w-1/4 h-full items-center justify-center shadow-inner shadow-black'>
         <div id='pick-description'>
-          <div id='pick-description-price' className='text-center p-4 bg-slate-300 text-2xl outline outline-black'>
+          <div id='pick-description-price' className='text-center p-4 bg-gradient-to-l from-slate-200 to-slate-400 text-2xl outline outline-black'>
             <span id='table-price'>${car.data.price_per_day} / Rent Per Day</span>
           </div>
           <div id='pick-description-table' className='grid grid-cols-2'>

@@ -1,10 +1,13 @@
 import Image from 'next/image'
+import Link from 'next/link';
 import { Inter } from 'next/font/google'
 import Header from '../../components/header'
 import { FiMapPin } from "react-icons/fi";
 import { useEffect, useState, useRef } from 'react';
 import useUltimaStore from '../../store/store'
 import Koenigsegg from '../../public/KoenigseggDiag.png'
+import { FaFlagCheckered } from "react-icons/fa";
+import { FaCalendarCheck } from "react-icons/fa";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -115,6 +118,10 @@ if (!mounted) return null;
               <h1 className='text-white text-2xl'>Plan your trip now</h1><br/>
                 <h1 className='text-white text-5xl'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
                 <h1 className='text-white'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
+                <div className='flex'>
+                <Link href='/browse' className='main-button text-white pt-3 pb-3 pl-6 pr-6 text-xl bg-slate-400 mt-4 mr-4 rounded-sm shadow-sm shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'>Book Ride<FaCalendarCheck className='inline pl-2 text-2xl'/></Link>
+                <button className='main-button text-white pt-3 pb-3 pl-6 pr-6 text-xl bg-slate-400 mt-4 rounded-sm shadow-sm shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'>Learn More<FaFlagCheckered className='inline pl-2 text-2xl'/></button>
+                </div>
               </div>
               <div className='justify-center items-end w-full pr-64 hidden lg:flex'>
                 <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={500} alt=""/>
