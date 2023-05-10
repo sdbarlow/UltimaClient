@@ -1,9 +1,9 @@
-import React, { use } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Calendar from '../../components/Calendar';
-import { Range } from "react-date-range";
-import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import MercedesFront from '../../public/MercedesFront.png'
@@ -29,7 +29,6 @@ import FerarriBack from '../../public/FerrariBack.png'
 import useUltimaStore from '../../store/store'
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import { useEffect, useState } from 'react';
-import { date } from 'yup';
 
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
@@ -38,8 +37,39 @@ const Header = dynamic(() => import('../../components/header'), {
 function inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
+  const user = useUltimaStore(state => state.user);
   const [toggle, setToggle] = useState(false)
-  const [totalPrice, setTotalPrice] = useState('')
+  const notify = () => toast.error('Must Be Logged In', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
+  const errorNotify = () => toast.error('Reserve Request Failed', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  const successNotify = () => toast.success('Booking Successful!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+  const [totalPrice, setTotalPrice] = useState(`${car.data.price_per_day}`)
   const [selectedDateRange, setSelectedDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -128,14 +158,53 @@ function inspect() {
         }
 }, [])
 
+function formatDateTime(dateTime) {
+  const year = dateTime.getFullYear().toString().slice(-2);
+  const month = ('0' + (dateTime.getMonth() + 1)).slice(-2);
+  const day = ('0' + dateTime.getDate()).slice(-2);
+  return `${month}/${day}/${year}`;
+}
+
 function handleClick(){
   setToggle(!toggle)
 }
 
-console.log(car)
+function handleReserve(){
+  if (!user){
+    notify()
+  } else {
+    const formattedData = {
+      user_id: user.data.id,
+      car_id: car.data.id,
+      rental_start: formatDateTime(selectedDateRange.startDate),
+      rental_end: formatDateTime(selectedDateRange.endDate),
+      total_price: totalPrice
+    };
+    console.log(formattedData)
+    fetch('https://ultima-appp.onrender.com/rental', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formattedData),
+      })
+      .then(response => {
+        if (!response.ok) {
+          {errorNotify()}
+        }
+        return response.json();
+      })
+      .then(data => {
+        useUltimaStore.getState().appendRental(data);
+        successNotify()
+        console.log(user)
+      })
+  }
+}
     
   return (
     <>
+    <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
     <Header/>
     <div className='flex w-full shadow-inner bg-slate-100 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='car-slides' className='flex justify-center items-center w-3/4 h-full shadow-inner shadow-black'>
@@ -161,11 +230,22 @@ console.log(car)
         </div>
       </div>
       <div id='car-stats' className='flex w-1/4 h-full items-center justify-center shadow-inner shadow-black'>
+          {toggle ? 
+            <div className="h-fit flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
+              <p className='reserve-form-text bg-white p-2 text-xl w-full border-b-2 border-t-2'>${car.data.price_per_day}/Per Day</p>
+              <Calendar value={selectedDateRange} onChange={handleDateChange} className="mb-6" />
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 border-b-2 bg-white w-full font-bold">Total Price:<span className="sm-reserve-form-text text-xl font-normal ml-2">${totalPrice}</span></p>
+              <div className='flex w-full p-2 items-center bg-white border-b-2 justify-between'>
+              <button className="bg-red-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>Cancel</button>
+              <button className="bg-green-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleReserve}>Reserve</button>
+              </div>
+            </div>: 
         <div id='pick-description'>
           <div id='pick-description-price' className='text-center p-4 bg-gradient-to-l from-slate-200 to-slate-400 text-2xl outline outline-black'>
-            <span id='table-price'>${car.data.price_per_day} / Rent Per Day</span>
-          </div>
-          {toggle ? <div className="h-full"><Calendar value={selectedDateRange} onChange={handleDateChange}/><p>Total Price: ${totalPrice}</p></div>: null}
+          <span id='table-price'>${car.data.price_per_day} / Rent Per Day</span>
+        </div>
           <div id='pick-description-table' className='grid grid-cols-2'>
             <div className="p-4 border border-black border-r-0"><span className='block border-r-2 border-black'>Make</span></div>
             <div className="p-4 border border-black border-l-0"><span>{car.data.make}</span></div>
@@ -181,7 +261,7 @@ console.log(car)
             {car.data.availability ? <div className="p-4 border border-black border-l-0"><span>Available</span></div> : <div className="p-4 border border-black border-l-0"><span>Not Available</span></div>}
           </div>
           <button id='table-reserve' onClick={handleClick} className="bg-black text-slate-300 text-center w-full mt-4 p-4 text-2xl hover:text-3xl border-2 border-slate-300">Reserve Now</button>
-        </div>
+        </div>}
       </div>
     </div>
     </>

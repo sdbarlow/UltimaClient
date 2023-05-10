@@ -20,25 +20,29 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-
-  setMounted(true);
-
-  if (typeof window !== 'undefined') {
-    window.addEventListener('scroll', function() {
-      let radio = document.getElementById('item-1');
-      let lamb = document.getElementById('lamb');
-      let rect = lamb.getBoundingClientRect();
-      let visible = (
-        rect.top >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-      );
-      if (visible) {
-        radio.checked = true;
-      }
-    });
-}
-},[])
+  useEffect(() => {
+    setMounted(true);
+  
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', function() {
+        let radio = document.getElementById('item-1');
+        let lamb = document.getElementById('lamb');
+  
+        if (lamb) {
+          let rect = lamb.getBoundingClientRect();
+          let visible = (
+            rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+          );
+  
+          if (visible) {
+            radio.checked = true;
+          }
+        }
+      });
+    }
+  }, []);
+  
 
 useEffect(() => {
   if(typeof document !== 'undefined'){
