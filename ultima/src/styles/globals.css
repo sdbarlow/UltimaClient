@@ -181,6 +181,13 @@
     background-color: white;
   }
 
+  @media screen and (max-width: 375px) {
+    #platform {
+      height:80vh;
+      width:100vw;
+    }
+  }
+
   #parent-1:hover ~ #parent-2,
   #parent-3:hover ~ #parent-4,
   #parent-5:hover ~ #parent-6,
@@ -208,6 +215,16 @@
   }
 
   .car-title{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 500;
+  }
+
+  .rent-desc{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
+
+  .rent-title{
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 500;
   }
@@ -406,14 +423,14 @@
   #car-3:checked ~ #platform #car-2-photo,
   #car-4:checked ~ #platform #car-3-photo,
   #car-5:checked ~ #platform #car-4-photo{
-    transform: translatex(-125%);
+    transform: translatex(-115%);
   }
 
   #car-1:checked ~ #platform #car-2-photo,
   #car-2:checked ~ #platform #car-3-photo,
   #car-3:checked ~ #platform #car-4-photo,
   #car-4:checked ~ #platform #car-5-photo{
-    transform: translatex(125%);
+    transform: translatex(115%);
   }
   
   #car-1:checked ~ #platform #car-1-photo,
@@ -428,6 +445,31 @@
     padding-left: 10px;
     opacity: 1;
     z-index: 1;
+  }
+
+  @media screen and (max-width: 375px) {
+    #platform #car-1-photo,
+    #platform #car-2-photo,
+    #platform #car-3-photo,
+    #platform #car-4-photo,
+    #platform #car-5-photo {
+      padding-top: 70px;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    #car-1:checked ~ #platform #car-2-photo,
+    #car-2:checked ~ #platform #car-3-photo,
+    #car-3:checked ~ #platform #car-4-photo,
+    #car-4:checked ~ #platform #car-5-photo{
+      transform: translatex(100%);
+    }
+    #car-2:checked ~ #platform #car-1-photo,
+    #car-3:checked ~ #platform #car-2-photo,
+    #car-4:checked ~ #platform #car-3-photo,
+    #car-5:checked ~ #platform #car-4-photo{
+      transform: translatex(-100%);
+    }
   }
 
   .showcase {
@@ -457,4 +499,12 @@
   .slant-container{
     -webkit-backface-visibility : hidden;
     overflow: hidden; 
+  }
+
+
+  .skew-div:after {
+    transform-origin: bottom left;
+    -ms-transform: skew(-30deg, 0deg);
+    -webkit-transform: skew(-30deg, 0deg);
+    transform: skew(-30deg, 0deg);
   }

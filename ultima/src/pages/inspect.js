@@ -211,7 +211,7 @@ function handleReserve(){
         <div id='left-arrow' className='flex h-fit group hover:cursor-pointer mr-4'>
           <SlArrowLeft className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
         </div>
-        <div id='image-container' className='flex flex-col w-3/4 h-full'>
+        <div id='image-container' className='flex flex-col justify-center items-center w-3/4 h-full'>
           <div className='w-full flex justify-center items-center mb-10 mt-2 tracking-widest text-2xl'>
             <h1 className='car-title'>{car.data.make} {car.data.model}</h1>
           </div>

@@ -108,7 +108,7 @@ if (!mounted) return null;
       <div className='text-center'>
       {dropdown && (
         <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-6 right-0 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-8px] lg:mr-72 top-20 text-sm">
-          <button className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</button>
+          <Link href='/rentals' className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
           <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
           <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
             Log Out
@@ -117,18 +117,19 @@ if (!mounted) return null;
       )}
       {user ? <h1 id='wel-text' className='opacity-0 text-white animate-reveal h-0 tracking-widest bg-black'>Welcome, {user.data.first_name}!</h1> : null}
       </div>
-      <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)` }}>
-              <div className='flex flex-col justify-center pl-64 w-full items-start'>
-              <h1 className='text-white text-2xl'>Plan your trip now</h1><br/>
-                <h1 className='text-white text-5xl'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
-                <h1 className='text-white'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
-                <div className='flex mt-6'>
-                <Link href='/browse' className='main-button text-white pt-3 pb-3 pl-6 pr-6 text-xl bg-slate-400 mt-4 mr-4 rounded-sm shadow-sm shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'>Book Ride<FaCalendarCheck className='inline pl-2 text-2xl'/></Link>
-                <button className='main-button text-white pt-3 pb-3 pl-6 pr-6 text-xl bg-slate-400 mt-4 rounded-sm shadow-sm shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'>Learn More<FaFlagCheckered className='inline pl-2 text-2xl'/></button>
+      <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)`}}>
+              <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-24 md:w-72 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
+              <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-14 lg:ml-64 -skew-x-12">
+              <h1 className='text-black sm:text-lg lg:text-2xl skew-x-12'>Plan your trip now</h1><br/>
+                <h1 className='text-black sm:text-xl sm:mr-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
+                <h1 className='text-black sm:hidden lg:inline-block skew-x-12 lg:pl-10'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
+                <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden'>
+                <Link href='/browse' className='main-button text-white skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-slate-400 sm:bg-transparent lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
+                <button className='main-button text-white skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-slate-400 lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
                 </div>
               </div>
-              <div className='justify-center items-end w-full pr-64 hidden lg:flex'>
-                <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={500} alt=""/>
+              <div className='justify-center bg-black items-end w-full pr-64 lg:flex'>
+                <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={900} alt=""/>
               </div>
               </div>
             <div className="flex justify-center pl-64 pr-64 items-center w-screen h-screen bg-black">
@@ -143,8 +144,8 @@ if (!mounted) return null;
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
                 <Image className="w-full h-full object-cover" width={500} height={300} src="/LamborghiniLogo.png" alt="song"/>
               </label>
-              <label className="absolute w-3/6 left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
-                <Image className="w-fit h-10/12" src="/PorscheLogo.png" width={500} height={300}  alt="song"/>
+              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
+                <Image className="w-full h-full" src="/PorscheLogo.png" width={500} height={300}  alt="song"/>
               </label>
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-3" id="item-3-photo">
                 <Image className="w-full h-full object-cover" src="/KoenigseggLogo.png" width={500} height={300}  alt="song"/>
@@ -152,7 +153,7 @@ if (!mounted) return null;
               <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-4" id="item-4-photo">
                 <Image className="w-fit h-full object-cover pl-12" src="/Ferrar.png" width={500} height={300}  alt="song"/>
               </label>
-              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-5" id="item-5-photo">
+              <label className="absolute w-3/6 h-full left-0  right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-5" id="item-5-photo">
                 <Image className="w-full h-full object-cover" src="/Mercedes.png" width={500} height={300}  alt="song"/>
               </label>
             </div>
@@ -185,7 +186,7 @@ if (!mounted) return null;
               <h1 id='loc-header' className='loc-header text-white text-center pt-16 text-6xl'>Browse By Location</h1>
               </div>
               <div className="relative m-auto w-fit h-3/4">
-              <Image id="usmap" className="w-full h-full object-contain brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
+              <Image id="usmap" className="w-full h-full object-fit brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
               <div id='parent-1' className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
@@ -201,7 +202,7 @@ if (!mounted) return null;
               <div id='parent-9' className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="absolute text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
               </div>
-              <div id='parent-10' className="absolute top-[37%] right-[-91%] transform -translate-x-1/2 -translate-y-1/2">
+              <div id='parent-10' className="absolute right-[-30%]" style={{ top: '10%' }}>
                 <svg height="50" width="500">
                   <line x1="0" y1="0" x2="200" y2="200" className="stroke-white" />
                   <foreignObject x="60" y="30" width="500" height="50">
@@ -223,7 +224,7 @@ if (!mounted) return null;
                   <line x1="130" y1="20" y2="20" x2="40" className="stroke-white"/>
                 </svg>
               </div>
-              <div id='parent-2' className="absolute top-[77%] right-[-51%] transform -translate-x-1/2 -translate-y-1/2">
+              <div id='parent-2' className="absolute top-[77%] right-[4rem] transform -translate-x-1/2 -translate-y-1/2">
                 <svg height="140" width="500">
                   <line x1="13" y1="0" x2="200" y2="300" className="stroke-white" />
                   <foreignObject x="115" y="120" width="500" height="50">

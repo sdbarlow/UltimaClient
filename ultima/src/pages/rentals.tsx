@@ -91,9 +91,9 @@ function Rentals() {
                 <p className="text-black font-bold">
                     {rental.car.make} {rental.car.model}
                 </p>
-                <p className="text-gray-500">Rental Start: {rental.rental_start}</p>
-                <p className="text-gray-500">Rental End: {rental.rental_end}</p>
-                <p className="text-gray-500">Total Price: ${rental.total_price}</p>
+                <p className="rent-title text-black">Rental Start: <span className='rent-desc'>{rental.rental_start.slice(0,10)}</span></p>
+                <p className="rent-title text-black">Rental End: <span className='rent-desc'>{rental.rental_end.slice(0,10)}</span></p>
+                <p className="rent-title text-black">Total Price: <span className='rent-desc'>${rental.total_price}</span></p>
                 </div>
             );
             })}

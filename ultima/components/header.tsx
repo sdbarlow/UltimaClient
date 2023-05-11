@@ -17,7 +17,7 @@ function Header() {
       <div className="flex h-full w-full justify-between">
         <div className="flex w-64 justify-start text-4xl items-center">
           <Image className="ml-6" src='/diamond.png' alt="me" width="44" height="44"/>
-          <h1 className="ml-2">Ultima</h1>
+          <Link href='/'><h1 className="ml-2">Ultima</h1></Link>
         </div>
         <div className="w-64 justify-between items-center hidden lg:flex">
           <a className="hover:cursor-pointer hover:text-lg">Home</a>
