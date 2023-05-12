@@ -13,7 +13,7 @@ function Header() {
   const dropdown = useUltimaStore((state) => state.dropdown)
 
   return (
-    <div id="header" className="relative w-screen h-24 pl-0 pr-0 lg:pr-64 lg:pl-64 brightness-125 bg-white overflow-x-scroll">
+    <div id="header" className="relative w-screen h-24 pl-0 pr-0 lg:pr-8 lg:pl-8 brightness-125 bg-white overflow-x-scroll">
       <div className="flex h-full w-full justify-between">
         <div className="flex w-64 justify-start text-4xl items-center">
           <Image className="ml-6" src='/diamond.png' alt="me" width="44" height="44"/>

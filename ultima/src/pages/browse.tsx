@@ -203,7 +203,7 @@ function browse() {
           </div>
         </div>
       </div>
-      <div id='footer' className='flex items-center justify-center h-1/6 sm:h-1/2 w-screen bg-white overflow-hidden'>
+      <div id='footer' className='flex items-center justify-center h-1/6 sm:h-1/2 w-screen pt-12 bg-white overflow-hidden'>
         <div className='w-1/6 sm:w-1/4 h-full flex items-center justify-between'>
           <div id='bullet1' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>
           <div id='bullet2' className='bullet relative h-3 w-3 border-2 border-black rounded-full z-50'></div>

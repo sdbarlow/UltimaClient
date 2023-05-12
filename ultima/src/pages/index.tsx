@@ -100,6 +100,35 @@ function logOut(){
   setDropDown(!dropdown)
 }
 
+useEffect(() => {
+  const ultima = document.getElementById('ultima');
+  const animationInterval = 3000; // 3 seconds delay between iterations
+  
+  const animate = () => {
+    const ultima = document.getElementById('ultima');
+    if (ultima !== null) {
+      ultima.style.animation = 'animate 750ms ease-in-out';
+      ultima.style.animationIterationCount = '1';
+    }
+  };
+  
+  const applyAnimations = () => {
+    const ultima = document.getElementById('ultima');
+    if (ultima !== null) {
+      animate();
+      setTimeout(() => {
+        if (ultima !== null) {
+          ultima.style.animation = 'none'; // Reset animation after completion
+        }
+      }, animationInterval);
+    }
+  };
+  
+  applyAnimations();
+  setInterval(applyAnimations, animationInterval * 2);
+}, [])
+
+
 if (!mounted) return null;
 
   return (
@@ -107,7 +136,7 @@ if (!mounted) return null;
       <Header/>
       <div className='text-center'>
       {dropdown && (
-        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-6 right-0 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-8px] lg:mr-72 top-20 text-sm">
+        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
           <Link href='/rentals' className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
           <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
           <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
@@ -115,24 +144,23 @@ if (!mounted) return null;
           </button>
         </div>
       )}
-      {user ? <h1 id='wel-text' className='opacity-0 text-white animate-reveal h-0 tracking-widest bg-black'>Welcome, {user.data.first_name}!</h1> : null}
       </div>
       <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)`}}>
               <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-24 md:w-72 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
-              <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-14 lg:ml-64 -skew-x-12">
+              <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-14 lg:ml-8 -skew-x-12">
               <h1 className='text-black sm:text-lg lg:text-2xl skew-x-12'>Plan your trip now</h1><br/>
                 <h1 className='text-black sm:text-xl sm:mr-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
                 <h1 className='text-black sm:hidden lg:inline-block skew-x-12 lg:pl-10'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
                 <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden'>
-                <Link href='/browse' className='main-button text-white skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-slate-400 sm:bg-transparent lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
-                <button className='main-button text-white skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-slate-400 lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:shadow-slate-300 hover:shadow-lg hover:shadow-slate-300 hover:bg-slate-300 hover:text-black'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
+                <Link href='/browse' className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
+                <button className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
                 </div>
               </div>
-              <div className='justify-center bg-black items-end w-full pr-64 lg:flex'>
+              <div className='justify-center bg-black items-end w-full pr-8 lg:flex'>
                 <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={900} alt=""/>
               </div>
               </div>
-            <div className="flex justify-center pl-64 pr-64 items-center w-screen h-screen bg-black">
+            <div className="flex justify-center items-center w-screen h-screen bg-black">
             <div className="w-full max-w-3xl max-h-fit h-4/5 flex justify-center flex-col items-center ">
               <h1 id="prompt" className='pb-16 text-6xl'>Browse By Make</h1>
               <input type="radio" name="slider" id="item-1"/>
@@ -181,50 +209,15 @@ if (!mounted) return null;
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center pl-64 pr-64 w-vw h-vh overflow-hidden bg-black">
+            <div className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
               <div className="flex justify-center w-full h-2/4">
               <h1 id='loc-header' className='loc-header text-white text-center pt-16 text-6xl'>Browse By Location</h1>
               </div>
-              <div className="relative m-auto w-fit h-3/4">
-              <Image id="usmap" className="w-full h-full object-fit brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
+              <div className="relative block m-auto max-w-[1200px] max-h-[800px">
+              <Image id="usmap" className="align-top relative w-full brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
               <div id='parent-1' className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
-              </div>
-              <div id='parent-3' className="map-pin absolute group hover:cursor-pointer hover:right-[83%] top-[50%] right-[84%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
-              </div>
-              <div id='parent-5' className="map-pin absolute group hover:cursor-pointer hover:right-[12%] top-[77%] right-[13%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
-              </div>
-              <div id='parent-7' className="map-pin absolute group hover:cursor-pointer hover:right-[77.5%] top-[45%] right-[78.5%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
-              </div>
-              <div id='parent-9' className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
-                <FiMapPin className="absolute text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
-              </div>
-              <div id='parent-10' className="absolute right-[-30%]" style={{ top: '10%' }}>
-                <svg height="50" width="500">
-                  <line x1="0" y1="0" x2="200" y2="200" className="stroke-white" />
-                  <foreignObject x="60" y="30" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
-                      <sup className='loc-text'>New York City</sup>
-                    </div>
-                  </foreignObject>
-                  <line x1="170" y1="50" y2="50" x2="50" className="stroke-white"/>
-                </svg>
-              </div>
-              <div id='parent-6' className="absolute top-[70%] right-[-45%] h-32 w-50 transform -translate-x-1/2 -translate-y-1/2">
-                <svg className="h-24 w-64 m-8" width="500">
-                <foreignObject x="65" y="0" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
-                      <sup className='loc-text'>Miami</sup>
-                    </div>
-                  </foreignObject>
-                  <line x1="0" y1="80" x2="40" y2="20" className="stroke-white" />
-                  <line x1="130" y1="20" y2="20" x2="40" className="stroke-white"/>
-                </svg>
-              </div>
-              <div id='parent-2' className="absolute top-[77%] right-[4rem] transform -translate-x-1/2 -translate-y-1/2">
+                <div id='parent-2' className="inline absolute">
                 <svg height="140" width="500">
                   <line x1="13" y1="0" x2="200" y2="300" className="stroke-white" />
                   <foreignObject x="115" y="120" width="500" height="50">
@@ -235,7 +228,10 @@ if (!mounted) return null;
                   <line x1="175" y1="140" y2="140" x2="100" className="stroke-white"/>
                 </svg>
               </div>
-              <div id='parent-4' className="absolute top-[58%] right-[-1%] transform -translate-x-1/2 -translate-y-1/2">
+              </div>
+              <div id='parent-3' className="map-pin absolute group hover:cursor-pointer hover:right-[83%] top-[50%] right-[84%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <div id='parent-4' className="inline absolute left-[-80px]">
                 <svg height="140" width="500">
                   <line x1="90" y1="50" x2="50" y2="200" className="stroke-white" />
                   <foreignObject x="3" y="120" width="500" height="50">
@@ -246,7 +242,24 @@ if (!mounted) return null;
                   <line x1="67" y1="140" y2="140" x2="-20" className="stroke-white"/>
                 </svg>
               </div>
-              <div id='parent-8' className="absolute top-[61%] right-[-17.8%] transform -translate-x-1/2 -translate-y-1/2">
+              </div>
+              <div id='parent-5' className="map-pin absolute group hover:cursor-pointer hover:right-[12%] top-[77%] right-[13%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <div id='parent-6' className="inline absolute top-[-90px]">
+                <svg className="h-24 w-64 m-8" width="500">
+                <foreignObject x="65" y="0" width="500" height="50">
+                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                      <sup className='loc-text'>Miami</sup>
+                    </div>
+                  </foreignObject>
+                  <line x1="0" y1="80" x2="40" y2="20" className="stroke-white" />
+                  <line x1="130" y1="20" y2="20" x2="40" className="stroke-white"/>
+                </svg>
+              </div>
+              </div>
+              <div id='parent-7' className="map-pin absolute group hover:cursor-pointer hover:right-[77.5%] top-[45%] right-[78.5%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <div id='parent-8' className="inline absolute top-[60px] left-[10px]">
                 <svg height="140" width="500">
                   <line x1="13" y1="0" x2="120" y2="300" className="stroke-white" />
                   <foreignObject x="67" y="120" width="500" height="50">
@@ -256,6 +269,21 @@ if (!mounted) return null;
                   </foreignObject>
                   <line x1="145" y1="140" y2="140" x2="63" className="stroke-white"/>
                 </svg>
+              </div>
+              </div>
+              <div id='parent-9' className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+                <FiMapPin className="absolute text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
+                <div id='parent-10' className="inline absolute left-[30px] top-[45px]">
+                <svg height="50" width="500">
+                  <line x1="0" y1="0" x2="200" y2="200" className="stroke-white" />
+                  <foreignObject x="60" y="30" width="500" height="50">
+                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                      <sup className='loc-text'>New York City</sup>
+                    </div>
+                  </foreignObject>
+                  <line x1="170" y1="50" y2="50" x2="50" className="stroke-white"/>
+                </svg>
+              </div>
               </div>
             </div>
             </div>
