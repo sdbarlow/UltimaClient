@@ -95,7 +95,7 @@ function browse() {
     
   
 
-  }, [])
+  })
 
   function handleClick(e:any) {
     setCarToShow(e.target.id);

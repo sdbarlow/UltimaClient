@@ -1,6 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 import Calendar from '../../components/Calendar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +12,7 @@ import MercedesDiag from '../../public/MercedesDiag.png'
 import MercedesSide from '../../public/MercedesSide.png'
 import MercedesBack from '../../public/MercedesBack.png'
 import KoenigseggFront from '../../public/KoenigseggFront.png'
-import KoenigseggDiag from '../../public/KoenigseggDiag.png'
+import KoenigseggDiag from '../../public/KoenigseggDiag2.png'
 import KoenigseggSide from '../../public/KoenigseggSide.png'
 import KoenigseggBack from '../../public/KoenigseggBack.png'
 import PorscheFront from '../../public/PorscheFront.png'
@@ -28,7 +29,7 @@ import FerarriSide from '../../public/FerrariSide.png'
 import FerarriBack from '../../public/FerrariBack.png'
 import useUltimaStore from '../../store/store'
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
@@ -37,6 +38,10 @@ const Header = dynamic(() => import('../../components/header'), {
 function inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
+  const dropdown = useUltimaStore((state) => state.dropdown)
+  const setUser = useUltimaStore((state) => state.setUser)
+  const setDropDown = useUltimaStore((state) => state.setDropDown);
+  const dropdownRef = useRef();
   const user = useUltimaStore(state => state.user);
   const [toggle, setToggle] = useState(false)
   const notify = () => toast.error('Must Be Logged In', {
@@ -85,6 +90,14 @@ function inspect() {
     return days * car.data.price_per_day; 
   }
 
+  function logOut(){
+    setUser(null)
+    setDropDown(!dropdown)
+  }
+
+  function toggleHandle(){
+    setDropDown(!dropdown)
+  }
 
   const handleDateChange = (dateRange) => {
     console.log("dateRange", dateRange);
@@ -201,12 +214,33 @@ function handleReserve(){
       })
   }
 }
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropDown(false);
+    }
+  };
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [dropdownRef]);
     
   return (
     <>
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
     <Header/>
     <div className='flex w-full shadow-inner bg-slate-100 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
+    {dropdown && (
+        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
+          <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 text-center border-b-2 hover:bg-gray-400">My Rentals</Link>
+          <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
+          <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
+            Log Out
+          </button>
+        </div>
+      )}
       <div id='car-slides' className='flex justify-center items-center w-3/4 h-full shadow-inner shadow-black'>
         <div id='left-arrow' className='flex h-fit group hover:cursor-pointer mr-4'>
           <SlArrowLeft className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>

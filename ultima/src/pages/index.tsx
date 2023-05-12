@@ -128,6 +128,10 @@ useEffect(() => {
   setInterval(applyAnimations, animationInterval * 2);
 }, [])
 
+function toggleHandle(){
+  setDropDown(!dropdown)
+}
+
 
 if (!mounted) return null;
 
@@ -137,7 +141,7 @@ if (!mounted) return null;
       <div className='text-center'>
       {dropdown && (
         <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
-          <Link href='/rentals' className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
+          <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
           <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
           <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
             Log Out
@@ -211,7 +215,7 @@ if (!mounted) return null;
             </div>
             <div className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
               <div className="flex justify-center w-full h-2/4">
-              <h1 id='loc-header' className='loc-header text-white text-center pt-16 text-6xl'>Browse By Location</h1>
+              <h1 id='loc-header' className='loc-header text-white text-center pt-16 pb-2 text-6xl'>Browse By Location</h1>
               </div>
               <div className="relative block m-auto max-w-[1200px] max-h-[800px">
               <Image id="usmap" className="align-top relative w-full brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
