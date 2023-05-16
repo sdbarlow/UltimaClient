@@ -4,14 +4,18 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { AiOutlineRollback } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import useUltimaStore from '../../store/store'
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { Session } from "inspector";
 
 
 function SignUp() {
     const router = useRouter();
     const [refreshPage, setRefreshPage] = useState(false);
     const setUser = useUltimaStore((state) => state.setUser);
+
 
     useEffect(() => {
         console.log("FETCH! ");
@@ -64,6 +68,7 @@ function SignUp() {
           });
         },
       });
+
 
   return (
         <div className='min-h-screen bg-black flex items-center justify-center'>
@@ -131,11 +136,23 @@ function SignUp() {
                 </button>
                 </div>
                 <div className="text-center mt-4">
-                    Already have an account?{" "}
-                    <Link className="hover:text-blue-400" href="/LogIn">
+                  Already have an account?{" "}
+                  <Link className="hover:text-blue-400" href="/LogIn">
                     Log in
                   </Link>
-                  </div>
+                </div>
+                
+                {/* Google Sign Up Button */}
+                <div className="flex justify-center mt-4">
+                  <button
+                    type="button"
+                    onClick={() => signIn('google', { callbackUrl: '/' })}
+                    className="google-signup-button bg-white text-black py-2 px-4 rounded-md border-2 border-black focus:outline-none"
+                  >
+                    Sign Up with Google
+                    <FcGoogle className="inline-block ml-4"/>
+                  </button>
+                </div>
             </form>
             </div>
         </div>

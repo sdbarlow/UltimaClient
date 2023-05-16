@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import useUltimaStore from '../../store/store'
+import {useSession, signIn, signOut} from 'next-auth/react'
 
 function LogIn() {
+    const {data: session} = useSession()
+
     interface FormData {
         email: string;
         password: string;
@@ -85,6 +88,9 @@ function LogIn() {
                         >
                         Submit
                         </button>
+                    </div>
+                    <div>
+                      <button onClick={() => signIn('google', { callbackUrl: '/' })}>sign in</button>
                     </div>
                 </form>
             </div>

@@ -8,17 +8,21 @@ import useUltimaStore from '../../store/store'
 import Koenigsegg from '../../public/KoenigseggDiag.png'
 import { FaFlagCheckered } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
+import {useSession, signIn, signOut} from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
+  const {data: session} = useSession()
   const setUser = useUltimaStore((state) => state.setUser)
   const user = useUltimaStore(state => state.user);
   const setDropDown = useUltimaStore((state) => state.setDropDown);
   const dropdown = useUltimaStore((state) => state.dropdown)
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  console.log(session.user)
 
   useEffect(() => {
     setMounted(true);
