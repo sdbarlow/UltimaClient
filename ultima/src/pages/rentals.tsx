@@ -103,6 +103,7 @@ function Rentals() {
       setTargetedEle(id)
     }
  
+    console.log(user.data.rentals)
   return (
     <>
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
@@ -113,13 +114,15 @@ function Rentals() {
             const uniqueId = `close-icon-${index}`;
             return (
                 <div key={index} className="rental-card bg-white rounded-lg p-4 mb-4 mr-4">
-                <div>
+                {rental.car && rental.car.make ? (<div>
                     <CgCloseO id={rental.id} onClick={(e) => handleToggle(e)} className='text-xl hover:cursor-pointer hover:text-red-600 z-10'/>
                     <Image className='select-none' src={carImages[rental.car.make].img} height={900} width={300} alt='koen'/>
-                </div>
+                </div>) : null}
+                {rental && rental.car && rental.car.make ? (
                 <p className="text-black font-bold">
-                    {rental.car.make} {rental.car.model}
+                  {rental.car.make} {rental.car.model}
                 </p>
+              ) : null}
                 <p className="rent-title text-black">Rental Start: <span className='rent-desc'>{rental.rental_start.slice(0,10)}</span></p>
                 <p className="rent-title text-black">Rental End: <span className='rent-desc'>{rental.rental_end.slice(0,10)}</span></p>
                 <p className="rent-title text-black">Total Price: <span className='rent-desc'>${rental.total_price}</span></p>

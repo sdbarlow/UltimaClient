@@ -210,7 +210,7 @@ function handleReserve(){
       .then(data => {
         useUltimaStore.getState().appendRental(data);
         successNotify()
-        console.log(user)
+        console.log(data)
       })
   }
 }
