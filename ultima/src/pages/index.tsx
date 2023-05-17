@@ -8,7 +8,8 @@ import useUltimaStore from '../../store/store'
 import Koenigsegg from '../../public/KoenigseggDiag.png'
 import { FaFlagCheckered } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
-import {useSession, signIn, signOut} from 'next-auth/react'
+import LogoutButton from '../../components/LogoutButton';
+import {useSession, signOut} from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +23,6 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  console.log(session.user)
 
   useEffect(() => {
     setMounted(true);
@@ -162,7 +162,8 @@ if (!mounted) return null;
                 <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden'>
                 <Link href='/browse' className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
                 <button className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
-                </div>
+                <LogoutButton/>
+              </div>
               </div>
               <div className='justify-center bg-black items-end w-full pr-8 lg:flex'>
                 <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={900} alt=""/>

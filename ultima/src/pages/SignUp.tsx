@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { getSession } from "next-auth/react";
 import * as yup from "yup";
 import React from 'react'
 import { useEffect, useState } from "react";
@@ -7,15 +8,50 @@ import { AiOutlineRollback } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import useUltimaStore from '../../store/store'
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { Session } from "inspector";
+import { signIn, useSession } from 'next-auth/react';
 
 
 function SignUp() {
     const router = useRouter();
     const [refreshPage, setRefreshPage] = useState(false);
     const setUser = useUltimaStore((state) => state.setUser);
+    const { data: session, status } = useSession();
 
+    useEffect(() => {
+      if (status === 'authenticated' && session?.user && session?.user.name && session?.user.email) {
+        const { name, email } = session.user;
+        
+        const [first_name, last_name] = name.split(' ');
+
+          const formData = new FormData();
+          formData.append('first_name', first_name);
+          formData.append('last_name', last_name);
+          formData.append('email', email);
+          formData.append('password', email);
+    
+          console.log(formData)
+    
+        fetch('https://ultima-appp.onrender.com/signup', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((res) => {
+            if (res.status === 201) {
+              res.json().then((data) => {
+                setUser(data);
+                router.push('/');
+              });
+            }
+          })
+          .catch((error) => {
+            console.error('Error during signup:', error);
+          });
+      }
+    }, [session, status, router]);
+  
+    const handleSignInWithGoogle = () => {
+      signIn('google');
+    };
 
     useEffect(() => {
         console.log("FETCH! ");
@@ -146,7 +182,7 @@ function SignUp() {
                 <div className="flex justify-center mt-4">
                   <button
                     type="button"
-                    onClick={() => signIn('google', { callbackUrl: '/' })}
+                    onClick={handleSignInWithGoogle}
                     className="google-signup-button bg-white text-black py-2 px-4 rounded-md border-2 border-black focus:outline-none"
                   >
                     Sign Up with Google
