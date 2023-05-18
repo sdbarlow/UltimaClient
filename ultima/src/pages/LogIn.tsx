@@ -1,13 +1,15 @@
 import React from 'react'
 import { AiOutlineRollback } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import useUltimaStore from '../../store/store'
-import {useSession, signIn, signOut} from 'next-auth/react'
+import {useSession, signIn} from 'next-auth/react'
+
 
 function LogIn() {
-    const {data: session} = useSession()
+  const { data: session, status } = useSession();
 
     interface FormData {
         email: string;
@@ -24,6 +26,78 @@ function LogIn() {
       ...formData,
       [name]: value
     } as FormData);
+  };
+
+  const generateRandomPassword = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let password = '';
+    
+    // Generate a random character from the characters string
+    const getRandomCharacter = () => {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      return characters.charAt(randomIndex);
+    };
+    
+    // Generate a random password
+    for (let i = 0; i < 8; i++) {
+      password += getRandomCharacter();
+    }
+    
+    // Check if the password meets the requirements, regenerate if necessary
+    if (!password.match(/[A-Z]/) || !password.match(/[a-z]/) || !password.match(/[0-9]/)) {
+      password = generateRandomPassword();
+    }
+    
+    return password;
+  };
+
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user && session?.user.name && session?.user.email) {
+      const { name, email } = session.user;
+      
+      const [first_name, last_name] = name.split(' ');
+
+      const randomPassword = generateRandomPassword();
+
+        const formData = new FormData();
+        formData.append('first_name', first_name);
+        formData.append('last_name', last_name);
+        formData.append('email', email);
+        formData.append('password', randomPassword);
+  
+        fetch('https://ultima-appp.onrender.com/signup', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((res) => {
+            if (res.status === 201) {
+              res.json().then((data) => {
+                setUser(data);
+                router.push('/');
+              });
+            } else if (res.status === 400) {
+              const formData = new FormData();
+              formData.append('email', email);
+              fetch('https://ultima-appp.onrender.com/logingoogle', {
+                method: "POST",
+                body: formData
+              })
+                .then((res) => {
+                  if (res.status === 200) {
+                    res.json()
+                    .then((data) => {
+                      setUser({ data });
+                      router.push('/');
+                    });
+                  }
+                });
+            }
+          })
+    }
+  }, [session, status, router]);
+
+  const handleSignInWithGoogle = () => {
+    signIn('google');
   };
 
   function logIn(e: React.FormEvent<HTMLFormElement>) {
@@ -89,8 +163,18 @@ function LogIn() {
                         Submit
                         </button>
                     </div>
-                    <div>
-                      <button onClick={() => signIn('google', { callbackUrl: '/' })}>sign in</button>
+                    <div className=" justify-center mt-4">
+                      <h1 className='text-center'>OR</h1>
+                    </div>
+                    <div className="flex justify-center mt-4">
+                      <button
+                        type="button"
+                        onClick={handleSignInWithGoogle}
+                        className="google-signup-button bg-white text-black hover:text-sky-400 hover:border-sky-400 py-2 px-4 rounded-md border-2 border-black focus:outline-none"
+                      >
+                        Log In with Google
+                        <FcGoogle className="inline-block ml-4"/>
+                      </button>
                     </div>
                 </form>
             </div>

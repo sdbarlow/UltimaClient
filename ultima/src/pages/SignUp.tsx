@@ -17,35 +17,71 @@ function SignUp() {
     const setUser = useUltimaStore((state) => state.setUser);
     const { data: session, status } = useSession();
 
+    const generateRandomPassword = () => {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let password = '';
+      
+      // Generate a random character from the characters string
+      const getRandomCharacter = () => {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        return characters.charAt(randomIndex);
+      };
+      
+      // Generate a random password
+      for (let i = 0; i < 8; i++) {
+        password += getRandomCharacter();
+      }
+      
+      // Check if the password meets the requirements, regenerate if necessary
+      if (!password.match(/[A-Z]/) || !password.match(/[a-z]/) || !password.match(/[0-9]/)) {
+        password = generateRandomPassword();
+      }
+      
+      return password;
+    };
+
     useEffect(() => {
       if (status === 'authenticated' && session?.user && session?.user.name && session?.user.email) {
         const { name, email } = session.user;
         
         const [first_name, last_name] = name.split(' ');
 
+        const randomPassword = generateRandomPassword();
+
           const formData = new FormData();
           formData.append('first_name', first_name);
           formData.append('last_name', last_name);
           formData.append('email', email);
-          formData.append('password', email);
+          formData.append('password', randomPassword);
     
-          console.log(formData)
-    
-        fetch('https://ultima-appp.onrender.com/signup', {
-          method: 'POST',
-          body: formData,
-        })
-          .then((res) => {
-            if (res.status === 201) {
-              res.json().then((data) => {
-                setUser(data);
-                router.push('/');
-              });
-            }
+          fetch('https://ultima-appp.onrender.com/signup', {
+            method: 'POST',
+            body: formData,
           })
-          .catch((error) => {
-            console.error('Error during signup:', error);
-          });
+            .then((res) => {
+              if (res.status === 201) {
+                res.json().then((data) => {
+                  setUser(data);
+                  router.push('/');
+                });
+              } else if (res.status === 400) {
+                const formData = new FormData();
+                formData.append('email', email);
+                fetch('https://ultima-appp.onrender.com/logingoogle', {
+                  method: "POST",
+                  body: formData
+                })
+                  .then((res) => {
+                    if (res.status === 200) {
+                      res.json()
+                      .then((data) => {
+                        setUser({ data });
+                        router.push('/');
+                      });
+                    }
+                  });
+              }
+            })
       }
     }, [session, status, router]);
   
@@ -183,7 +219,7 @@ function SignUp() {
                   <button
                     type="button"
                     onClick={handleSignInWithGoogle}
-                    className="google-signup-button bg-white text-black py-2 px-4 rounded-md border-2 border-black focus:outline-none"
+                    className="google-signup-button bg-white text-black py-2 px-4 rounded-md border-2 border-black focus:outline-none hover:text-sky-400 hover:border-sky-400"
                   >
                     Sign Up with Google
                     <FcGoogle className="inline-block ml-4"/>

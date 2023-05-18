@@ -9,6 +9,7 @@ import Koenigsegg from '../../public/KoenigseggDiag.png'
 import { FaFlagCheckered } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
 import LogoutButton from '../../components/LogoutButton';
+import { useRouter } from 'next/router';
 import {useSession, signOut} from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default function Home() {
   const setDropDown = useUltimaStore((state) => state.setDropDown);
   const dropdown = useUltimaStore((state) => state.dropdown)
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
 
@@ -100,6 +102,7 @@ useEffect(() => {
 }, [dropdownRef]);
 
 function logOut(){
+  signOut();
   setUser(null)
   setDropDown(!dropdown)
 }
@@ -136,13 +139,16 @@ function toggleHandle(){
   setDropDown(!dropdown)
 }
 
+function handleClick(){
+  router.push('/browse')
+}
+
 
 if (!mounted) return null;
 
   return (
     <>
       <Header/>
-      <div className='text-center'>
       {dropdown && (
         <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
           <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
@@ -152,7 +158,6 @@ if (!mounted) return null;
           </button>
         </div>
       )}
-      </div>
       <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)`}}>
               <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-24 md:w-72 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
               <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-14 lg:ml-8 -skew-x-12">
@@ -162,7 +167,6 @@ if (!mounted) return null;
                 <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden'>
                 <Link href='/browse' className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
                 <button className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
-                <LogoutButton/>
               </div>
               </div>
               <div className='justify-center bg-black items-end w-full pr-8 lg:flex'>
@@ -218,7 +222,7 @@ if (!mounted) return null;
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
+            <div onClick={handleClick} className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
               <div className="flex justify-center w-full h-2/4">
               <h1 id='loc-header' className='loc-header text-white text-center pt-16 pb-2 text-6xl'>Browse By Location</h1>
               </div>
@@ -238,7 +242,7 @@ if (!mounted) return null;
                 </svg>
               </div>
               </div>
-              <div id='parent-3' className="map-pin absolute group hover:cursor-pointer hover:right-[83%] top-[50%] right-[84%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <div id='parent-3' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer hover:right-[83%] top-[50%] right-[84%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
                 <div id='parent-4' className="inline absolute left-[-80px]">
                 <svg height="140" width="500">
@@ -252,7 +256,7 @@ if (!mounted) return null;
                 </svg>
               </div>
               </div>
-              <div id='parent-5' className="map-pin absolute group hover:cursor-pointer hover:right-[12%] top-[77%] right-[13%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <div id='parent-5' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer hover:right-[12%] top-[77%] right-[13%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
                 <div id='parent-6' className="inline absolute top-[-90px]">
                 <svg className="h-24 w-64 m-8" width="500">
@@ -266,7 +270,7 @@ if (!mounted) return null;
                 </svg>
               </div>
               </div>
-              <div id='parent-7' className="map-pin absolute group hover:cursor-pointer hover:right-[77.5%] top-[45%] right-[78.5%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <div id='parent-7' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer hover:right-[77.5%] top-[45%] right-[78.5%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
                 <div id='parent-8' className="inline absolute top-[60px] left-[10px]">
                 <svg height="140" width="500">
@@ -280,7 +284,7 @@ if (!mounted) return null;
                 </svg>
               </div>
               </div>
-              <div id='parent-9' className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <div id='parent-9' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer top-[25%] right-[15%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="absolute text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
                 <div id='parent-10' className="inline absolute left-[30px] top-[45px]">
                 <svg height="50" width="500">

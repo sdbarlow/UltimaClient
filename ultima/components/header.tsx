@@ -20,7 +20,7 @@ function Header() {
           <Link href='/'><h1 className="ml-2">Ultima</h1></Link>
         </div>
         <div className="w-64 justify-between items-center hidden lg:flex">
-          <a className="hover:cursor-pointer hover:text-lg">Home</a>
+          <Link href='/'><h1 className="hover:cursor-pointer hover:text-lg">Home</h1></Link>
           <a href="#prompt" className="hover:cursor-pointer hover:text-lg">Models</a>
           <a href="#loc-header" className="hover:cursor-pointer hover:text-lg">Locations</a>
         </div>
