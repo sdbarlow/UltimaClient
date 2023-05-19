@@ -29,6 +29,9 @@ import useUltimaStore from '../../store/store'
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
 });
+const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
+  ssr: false,
+});
 
 
 function browse() {
@@ -117,30 +120,13 @@ function browse() {
       });
   }
   
-  function toggleHandle(){
-    setDropDown(!dropdown)
-  }
-
-  function logOut(){
-    signOut();
-    setUser(null)
-    setDropDown(!dropdown)
-  }
 
   return (
   <>
     <Header/>
-    <div className='text-center'>
       {dropdown && (
-        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
-          <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
-          <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
-          <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
-            Log Out
-          </button>
-        </div>
+        <DropDownDynamic/>
       )}
-      </div>
     <div className='flex flex-col justify-center w-full bg-black overflow-hidden overflow-y-hidden' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='display' className='flex flex-col h-5/6 w-screen bg-gradient-to-t from-black to-white'>
         <div id='ferarri-showcase' className='showcase sm:pt-32 lg:pt-0 flex h-1/2 w-full justify-center'>

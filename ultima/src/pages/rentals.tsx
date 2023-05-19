@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import useUltimaStore from '../../store/store';
 import KoenigseggDiag from '../../public/KoenigseggDiag2.png'
@@ -17,6 +19,9 @@ import 'react-date-range/dist/theme/default.css';
 const Header = dynamic(() => import('../../components/header'), {
   ssr: false
 });
+const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
+  ssr: false,
+});
 
 interface Rental {
   id: string;
@@ -29,6 +34,8 @@ interface Rental {
 function Rentals() {
   const user = useUltimaStore(state => state.user);
   const setUser = useUltimaStore((state) => state.setUser);
+  const dropdown = useUltimaStore((state) => state.dropdown);
+  const router = useRouter()
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [targetedEle, setTargetedEle] = useState(null)
 
@@ -61,9 +68,9 @@ function Rentals() {
     }
   });
 
-  if (!user) {
-    // Handle the case when user is null
-    return null; // or display a loading state, redirect, or other UI
+  if (user == null) {
+     router.push('/')
+     return
   }
 
   const handleConfirmDelete = () => {
@@ -103,59 +110,93 @@ function Rentals() {
       setTargetedEle(id)
     }
  
-    console.log(user.data.rentals)
   return (
     <>
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
       <Header />
+      {dropdown && (
+        <DropDownDynamic/>
+      )}
       <div className="w-screen bg-black" style={{ minHeight: `calc(100vh - 6rem)` }}>
         <div className="flex flex-wrap ml-8 pt-8">
-        {user.data.rentals.map((rental: Rental, index: number) => {
-            const uniqueId = `close-icon-${index}`;
-            return (
-                <div key={index} className="rental-card bg-white rounded-lg p-4 mb-4 mr-4">
-                {rental.car && rental.car.make ? (<div>
-                    <CgCloseO id={rental.id} onClick={(e) => handleToggle(e)} className='text-xl hover:cursor-pointer hover:text-red-600 z-10'/>
-                    <Image className='select-none' src={carImages[rental.car.make].img} height={900} width={300} alt='koen'/>
-                </div>) : null}
-                {rental && rental.car && rental.car.make ? (
-                <p className="text-black font-bold">
-                  {rental.car.make} {rental.car.model}
-                </p>
-              ) : null}
-                <p className="rent-title text-black">Rental Start: <span className='rent-desc'>{rental.rental_start.slice(0,10)}</span></p>
-                <p className="rent-title text-black">Rental End: <span className='rent-desc'>{rental.rental_end.slice(0,10)}</span></p>
-                <p className="rent-title text-black">Total Price: <span className='rent-desc'>${rental.total_price}</span></p>
-                </div>
-            );
-            })}
-            {showDeleteModal && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50"></div>
-              )}
-              {showDeleteModal && (
-                <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-md p-6 z-50">
-                  <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">
-                    Confirm Delete
-                  </h2>
-                  <p className="mb-4">Are you sure you want to delete your Reservation?</p>
-                  <div className="flex justify-end">
-                    <button
-                      onClick={() => setShowDeleteModal(false)}
-                      className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded  mr-2"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handleConfirmDelete}
-                      className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-                    >
-                      Delete
-                    </button>
+          {user.data.rentals.length === 0 ? (
+            <div className="flex border-2 border-red-400 w-full items-center justify-center">
+            <p className="text-white text-center bg-gray-900 px-4 py-2 rounded-lg">
+              You have no rentals.
+            </p>
+            <Link href="/browse">
+              <button className="bg-gray-900 text-white py-2 px-4 rounded-lg ml-4">
+                Browse Rentals
+              </button>
+            </Link>
+          </div>
+          ) : (
+            <>
+              {user.data.rentals.map((rental: Rental, index: number) => {
+                const uniqueId = `close-icon-${index}`;
+                return (
+                  <div key={index} className="rental-card bg-white rounded-lg p-4 mb-4 mr-4">
+                    {rental.car && rental.car.make && (
+                      <div>
+                        <CgCloseO
+                          id={rental.id}
+                          onClick={(e) => handleToggle(e)}
+                          className="text-xl hover:cursor-pointer hover:text-red-600 z-10"
+                        />
+                        <Image
+                          className="select-none"
+                          src={carImages[rental.car.make].img}
+                          height={900}
+                          width={300}
+                          alt="koen"
+                        />
+                      </div>
+                    )}
+                    {rental && rental.car && rental.car.make && (
+                      <p className="text-black font-bold">
+                        {rental.car.make} {rental.car.model}
+                      </p>
+                    )}
+                    <p className="rent-title text-black">
+                      Rental Start: <span className="rent-desc">{rental.rental_start.slice(0, 10)}</span>
+                    </p>
+                    <p className="rent-title text-black">
+                      Rental End: <span className="rent-desc">{rental.rental_end.slice(0, 10)}</span>
+                    </p>
+                    <p className="rent-title text-black">
+                      Total Price: <span className="rent-desc">${rental.total_price}</span>
+                    </p>
                   </div>
-                </div>
+                );
+              })}
+              {showDeleteModal && (
+                <>
+                  <div className="fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50"></div>
+                  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-md p-6 z-50">
+                    <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Confirm Delete</h2>
+                    <p className="mb-4">Are you sure you want to delete your Reservation?</p>
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => setShowDeleteModal(false)}
+                        className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded  mr-2"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleConfirmDelete}
+                        className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </>
               )}
+            </>
+          )}
         </div>
       </div>
+
     </>
   );
 }

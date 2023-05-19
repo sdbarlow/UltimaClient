@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google'
 import Header from '../../components/header'
 import { FiMapPin } from "react-icons/fi";
@@ -8,17 +9,16 @@ import useUltimaStore from '../../store/store'
 import Koenigsegg from '../../public/KoenigseggDiag.png'
 import { FaFlagCheckered } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
-import LogoutButton from '../../components/LogoutButton';
 import { useRouter } from 'next/router';
-import {useSession, signOut} from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
+  ssr: false,
+});
+
 
 export default function Home() {
-  const {data: session} = useSession()
-  const setUser = useUltimaStore((state) => state.setUser)
-  const user = useUltimaStore(state => state.user);
   const setDropDown = useUltimaStore((state) => state.setDropDown);
   const dropdown = useUltimaStore((state) => state.dropdown)
   const [mounted, setMounted] = useState(false);
@@ -90,24 +90,6 @@ useEffect(() => {
 }, [mounted]);
 
 useEffect(() => {
-  const handleClickOutside = (event: any) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropDown(false);
-    }
-  };
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, [dropdownRef]);
-
-function logOut(){
-  signOut();
-  setUser(null)
-  setDropDown(!dropdown)
-}
-
-useEffect(() => {
   const ultima = document.getElementById('ultima');
   const animationInterval = 3000; // 3 seconds delay between iterations
   
@@ -135,10 +117,6 @@ useEffect(() => {
   setInterval(applyAnimations, animationInterval * 2);
 }, [])
 
-function toggleHandle(){
-  setDropDown(!dropdown)
-}
-
 function handleClick(){
   router.push('/browse')
 }
@@ -150,13 +128,7 @@ if (!mounted) return null;
     <>
       <Header/>
       {dropdown && (
-        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
-          <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
-          <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
-          <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
-            Log Out
-          </button>
-        </div>
+        <DropDownDynamic/>
       )}
       <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)`}}>
               <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-24 md:w-72 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
