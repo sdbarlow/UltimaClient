@@ -116,7 +116,7 @@
     background-color: white;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 400px) {
     #platform {
       height:80vh;
       width:100vw;
@@ -382,7 +382,7 @@
     z-index: 1;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 405px) {
     #platform #car-1-photo,
     #platform #car-2-photo,
     #platform #car-3-photo,
@@ -392,7 +392,7 @@
     }
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 405px) {
     #car-1:checked ~ #platform #car-2-photo,
     #car-2:checked ~ #platform #car-3-photo,
     #car-3:checked ~ #platform #car-4-photo,

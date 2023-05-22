@@ -120,7 +120,7 @@ function Rentals() {
         <DropDownDynamic/>
       )}
       <div className="w-screen bg-black" style={{ minHeight: `calc(100vh - 6rem)` }}>
-        <div className="flex flex-wrap pt-8">
+        <div className="flex flex-wrap pt-8 ml-4 mr-4">
           {user.data.rentals.length === 0 ? (
             <div className="flex flex-col w-full items-center justify-center">
             <FaCar className='text-white text-6xl' />

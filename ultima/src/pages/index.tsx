@@ -7,6 +7,7 @@ import { FiMapPin } from "react-icons/fi";
 import { useEffect, useState, useRef } from 'react';
 import useUltimaStore from '../../store/store'
 import Koenigsegg from '../../public/KoenigseggDiag.png'
+import KoenigseggFront from '../../public/KoenigseggFront.png'
 import { FaFlagCheckered } from "react-icons/fa";
 import { FaCalendarCheck } from "react-icons/fa";
 import { useRouter } from 'next/router';
@@ -123,6 +124,46 @@ function handleClick(){
   router.push('/browse')
 }
 
+useEffect(() => {
+
+  const emblemInputs = [
+    document.querySelector('#item-1'),
+    document.querySelector('#item-2'),
+    document.querySelector('#item-3'),
+    document.querySelector('#item-4'),
+    document.querySelector('#item-5')
+  ];
+
+  const carImages = [
+    document.querySelector('#Lamborghini'),
+    document.querySelector('#Porsche'),
+    document.querySelector('#Koenigsegg'),
+    document.querySelector('#Ferarri'),
+    document.querySelector('#Mercedes'),
+  ]
+
+  emblemInputs.forEach((input, index) => {
+    carImages[0]?.addEventListener('click', handleClick);
+
+    if (input instanceof HTMLInputElement) {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          carImages.forEach((carImage) => {
+            carImage?.removeEventListener('click', handleClick);
+          });
+
+        const selectedCarImage = carImages[index];
+              if (selectedCarImage) {
+                selectedCarImage.addEventListener('click', handleClick);
+              }
+        }
+      })
+    }
+
+  })
+})
+
+
 
 if (!mounted) return null;
 
@@ -133,74 +174,75 @@ if (!mounted) return null;
         <DropDownDynamic/>
       )}
       <div className='flex justify-center text-gray-900 bg-black w-screen' style={{ height: `calc(100vh - 6rem)`}}>
-              <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-24 md:w-72 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
-              <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-14 lg:ml-8 -skew-x-12">
-              <h1 className='text-black sm:text-lg lg:text-2xl skew-x-12'>Plan your trip now</h1><br/>
-                <h1 className='text-black sm:text-xl sm:mr-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
-                <h1 className='text-black sm:hidden lg:inline-block skew-x-12 lg:pl-10'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
-                <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden'>
-                <Link href='/browse' className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
-                <button className='main-button skew-x-12 lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden lg:inline-block lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
+              <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-20 md:w-48 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
+              <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-0 md:ml-0 lg:ml-8 -skew-x-12">
+              <h1 className='text-black sm:text-lg md:text-2xl lg:text-2xl lg:ml-4 skew-x-12'>Plan your trip now</h1><br/>
+                <h1 className='text-black sm:text-xl sm:mr-3 md:text-3xl md:ml-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
+                <h1 className='text-black sm:hidden lg:inline-block skew-x-12 lg:ml-1 lg:pl-10'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
+                <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden lg:ml-2'>
+                <Link href='/browse' className='main-button skew-x-12 md:pt-3 md:pb-3 md:pl-6 md:pr-6 md:bg-transparent md:mt-4 md:mr-4 md:shadow-sm md:border-2 md:border-white md:shadow-white lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden md:inline-block md:pr-2 md:text-base lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
+                <button className='main-button skew-x-12 md:pt-3 md:pb-3 md:pl-6 md:pr-6 md:block md:mr-4 md:bg-transparent md:mt-4 md:shadow-sm md:border-2 md:border-white md:shadow-white lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden md:inline-block lg:inline-block md:pr-2 md:text-base lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
               </div>
               </div>
-              <div className='justify-center bg-black items-end w-full pr-8 lg:flex'>
-                <Image priority className="brightness-125 object-cover" src={Koenigsegg} width={900} height={900} alt=""/>
+              <div className='justify-center bg-black sm:items-center sm:flex w-full pr-8 lg:flex md:flex md:w-1/2'>
+                <Image priority className="sm:hidden md:inline md:pl-4 lg:pl-0 brightness-125 object-cover" src={Koenigsegg} width={900} height={900} alt=""/>
+                <Image priority className="hidden sm:inline sm:absolute sm:right-14 md:hidden lg:hidden brightness-125 object-cover" src={KoenigseggFront} width={900} height={900} alt=""/>
               </div>
               </div>
             <div className="flex justify-center items-center w-screen h-screen bg-black">
             <div className="w-full max-w-3xl max-h-fit h-4/5 flex justify-center flex-col items-center ">
-              <h1 id="prompt" className='pb-16 text-6xl'>Browse By Make</h1>
+              <h1 id="prompt" className='pb-16 sm:text-2xl md:text-4xl lg:text-6xl'>Browse By Make</h1>
               <input type="radio" name="slider" id="item-1"/>
               <input type="radio" name="slider" id="item-2"/>
               <input type="radio" name="slider" id="item-3"/>
               <input type="radio" name="slider" id="item-4"/>
               <input type="radio" name="slider" id="item-5"/>
             <div className="cards">
-              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
-                <Image className="w-full h-full object-cover" width={500} height={300} src="/LamborghiniLogo.png" alt="song"/>
+              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
+                <Image id='Lamborghini' className="w-full h-full object-cover" width={500} height={300} src="/LamborghiniLogo.png" alt="song"/>
               </label>
-              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
-                <Image className="w-full h-full" src="/PorscheLogo.png" width={500} height={300}  alt="song"/>
+              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
+                <Image id='Porsche' className="w-full h-full" src="/PorscheLogo.png" width={500} height={300}  alt="song"/>
               </label>
-              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-3" id="item-3-photo">
-                <Image className="w-full h-full object-cover" src="/KoenigseggLogo.png" width={500} height={300}  alt="song"/>
+              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-3" id="item-3-photo">
+                <Image id='Koenigsegg' className="w-full h-full object-cover" src="/KoenigseggLogo.png" width={500} height={300}  alt="song"/>
               </label>
-              <label className="absolute w-3/6 h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-4" id="item-4-photo">
-                <Image className="w-fit h-full object-cover pl-12" src="/Ferrar.png" width={500} height={300}  alt="song"/>
+              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-4" id="item-4-photo">
+                <Image id='Ferrari' className="w-fit h-full object-cover pl-12" src="/Ferrar.png" width={500} height={300}  alt="song"/>
               </label>
-              <label className="absolute w-3/6 h-full left-0  right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-5" id="item-5-photo">
-                <Image className="w-full h-full object-cover" src="/Mercedes.png" width={500} height={300}  alt="song"/>
+              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0  right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-5" id="item-5-photo">
+                <Image id='Mercedes' className="w-full h-full object-cover" src="/Mercedes.png" width={500} height={300}  alt="song"/>
               </label>
             </div>
-            <div id="player" className="w-full max-w-3xl max-h-fit h-1/5 flex justify-center items-center ">
+            <div id="player" className="w-full max-w-3xl max-h-fit sm:h-1/5 sm:mb-80 md:h-1/5 flex justify-center items-center border-2 ">
               <input type="radio" name="text-slider" id="item-text-1" />
               <input type="radio" name="text-slider" id="item-text-2"/>
               <input type="radio" name="text-slider" id="item-text-3"/>
             <div className="texts">
-              <label className="absolute w-1/5 h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-1-text" htmlFor="item-1">
-                <h1 id='lamb' className="texts text-center text-4xl object-cover">Lamborghini</h1>
+              <label className="absolute w-1/5 md:h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-1-text" htmlFor="item-1">
+                <h1 id='lamb' className="texts text-center sm:text-xl md:text-4xl object-cover">Lamborghini</h1>
               </label>
-              <label className="absolute w-1/5 h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-2-text" htmlFor="item-2">
-                <h1 className="texts text-center text-4xl object-cover">Porsche</h1>
+              <label className="absolute md:w-1/5 md:h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-2-text" htmlFor="item-2">
+                <h1 className="texts text-center sm:text-xl md:text-4xl object-cover">Porsche</h1>
               </label>
               <label className="absolute w-1/5 h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-3-text" htmlFor="item-3">
-                <h1 className="texts text-center text-4xl object-cover">Koenigsegg</h1>
+                <h1 className="texts text-center sm:text-xl md:text-4xl object-cover">Koenigsegg</h1>
               </label>
               <label className="absolute w-1/5 h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-4-text" htmlFor="item-4">
-                <h1 className="texts text-center text-4xl object-cover">Ferrari</h1>
+                <h1 className="texts text-center sm:text-xl md:text-4xl object-cover">Ferrari</h1>
               </label>
               <label className="absolute w-1/5 h-10 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" id="item-5-text" htmlFor="item-5">
-                <h1 className="texts text-center text-4xl object-cover">Mercedes</h1>
+                <h1 className="texts text-center sm:text-xl md:text-4xl object-cover">Mercedes</h1>
               </label>
             </div>
                 </div>
               </div>
             </div>
             <div onClick={handleClick} className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
-              <div className="flex justify-center w-full h-2/4">
-              <h1 id='loc-header' className='loc-header text-white text-center pt-16 pb-2 text-6xl'>Browse By Location</h1>
+              <div className="flex justify-center w-full h-1/12 border-2">
+              <h1 id='loc-header' className='loc-header text-white text-center pt-0 pb-2 md:text-4xl lg:text-6xl'>Browse By Location</h1>
               </div>
-              <div className="relative block m-auto max-w-[1200px] max-h-[800px">
+              <div className="relative block m-auto max-w-[1200px] max-h-[800px] border-2">
               <Image id="usmap" className="align-top relative w-full brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
               <div id='parent-1' className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />

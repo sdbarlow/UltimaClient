@@ -150,62 +150,62 @@ function browse() {
     <div className='flex flex-col justify-center w-full bg-black overflow-hidden overflow-y-hidden' style={{ height: `calc(100vh - 6rem)` }}>
       <div id='display' className='flex flex-col h-5/6 w-screen bg-gradient-to-t from-black to-white'>
         <div id='ferarri-showcase' className='showcase sm:pt-32 lg:pt-0 flex h-1/2 w-full justify-center'>
-          <h1 className='showcase-text absolute left-50 z-10 sm:text-lg lg:text-6xl text-white sm:mt-16 tracking-widest mt-32 bg-black'>Ferarri J50</h1>
-        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+          <h1 className='showcase-text absolute left-50 z-10 sm:text-xl lg:text-6xl text-white tracking-widest mt-32 bg-black sm:mt-32'>Ferarri J50</h1>
+        <div className='slant-container md:h-full sm:h-1/2 sm:w-1/4 md:w-1/6 mr-8 sm:mr-6 sm:ml-8 ml-0 md:mt-12 sm:mt-24 -skew-x-12'>
               <Image src={Ferarribg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 mr-6 sm:mr-3 -skew-x-12'>
             <Image src={Ferarribg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 sm:mr-9 -skew-x-12'>
             <Image src={Ferarribg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
         </div>
         <div id='mercedes-showcase' className='showcase mt-32 sm:mt-48 lg:mt-32 xl:mt-12 absolute flex h-1/2 w-full justify-center'>
-          <h1 className='showcase-text absolute left-50 z-10 sm:text-xl lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 bg-black'>Mercedes AMG</h1>
-        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+          <h1 className='showcase-text absolute left-50 z-10 sm:ml-8 sm:text-xl lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 bg-black sm:mt-32'>Mercedes AMG</h1>
+        <div className='slant-container h-full sm:w-1/4 md:w-1/6 mr-8 md:mt-12 sm:mt-24 -skew-x-12'>
               <Image src={Mercedesbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 mr-6 sm:mr-3 -skew-x-12'>
             <Image src={Mercedesbg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 sm:mr-9 -skew-x-12'>
             <Image src={Mercedesbg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
         </div>
         <div id='koenigsegg-showcase' className='showcase mt-32 absolute sm:mt-48 lg:mt-32 xl:mt-12 flex h-1/2 w-full justify-center'>
-          <h1 className='showcase-text absolute left-50 z-10 sm:text-xl lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 bg-black'>Koenigsegg Jesko</h1>
-        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+          <h1 className='showcase-text absolute left-50 z-10 sm:ml-8 sm:text-xl lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 bg-black sm:mt-32'>Koenigsegg Jesko</h1>
+        <div className='slant-container h-full sm:w-1/4 md:w-1/6 mr-8 md:mt-12 sm:mt-24 -skew-x-12'>
               <Image src={Koenigseggbg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 mr-6 sm:mr-3 -skew-x-12'>
             <Image src={Koenigseggbg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 md:pt-12 sm:pt-24 sm:mr-9 -skew-x-12'>
             <Image src={Koenigseggbg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
         </div>
         <div id='lamborghini-showcase' className='showcase sm:mt-48 lg:mt-32 xl:mt-12 absolute flex h-1/2 w-full justify-center'>
-          <h1 className='showcase-text absolute left-50 z-10 sm:ml-8 sm:text-lg lg:mt-32 lg:text-6xl text-white tracking-widest mt-24 bg-black'>Lamborghini Murcielago</h1>
-        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+          <h1 className='showcase-text absolute left-50 z-10 sm:ml-8 sm:text-xl lg:mt-32 lg:text-6xl text-white tracking-widest mt-24 bg-black sm:mt-32'>Lamborghini Murcielago</h1>
+        <div className='slant-container h-full sm:w-1/4 md:w-1/6 mr-8 sm:mt-24 md:mt-12 -skew-x-12'>
               <Image src={Lamborghinibg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 sm:pt-24 md:pt-12 mr-6 sm:mr-3 -skew-x-12'>
             <Image src={Lamborghinibg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 sm:mr-9 sm:pt-24 md:pt-12 -skew-x-12'>
             <Image src={Lamborghinibg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
           </div>
         <div id='porsche-showcase' className='showcase mt-32 sm:mt-48 lg:mt-32 xl:mt-12 absolute flex h-1/2 w-full justify-center'>
-          <h1 className='showcase-text absolute left-50 z-10 sm:text-lg lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 bg-black'>Porsche 918 Spyder</h1>
-        <div className='slant-container h-full w-1/6 mr-8 mt-12 -skew-x-12'>
+          <h1 className='showcase-text absolute left-50 z-10 sm:ml-8 sm:text-xl lg:mt-32 lg:text-6xl text-6xl text-white tracking-widest mt-24 sm:mt-32 bg-black'>Porsche 918 Spyder</h1>
+        <div className='slant-container h-full sm:w-1/4 md:w-1/6 mr-8 sm:mt-24 md:mt-12 -skew-x-12'>
               <Image src={Porschebg1} className='object-fill' alt='ferrari' width={900} height={300}/>
             </div>
-          <div className='slant-container h-full w-1/6 pt-12 mr-6 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 sm:pt-24 md:pt-12 sm:mr-3 mr-6 -skew-x-12'>
             <Image src={Porschebg2} className='object-fill'  alt='ferrari' width={900} height={300}/>
           </div>
-          <div className='slant-container h-full w-1/6 pt-12 -skew-x-12'>
+          <div className='slant-container h-full sm:w-1/4 md:w-1/6 sm:mr-9 sm:pt-24 md:pt-12 -skew-x-12'>
             <Image src={Porschebg3} className='object-fill' alt='ferrari' width={900} height={300}/>
           </div>
           </div>

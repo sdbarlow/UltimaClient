@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import useUltimaStore from '../store/store'
+import { signIn, useSession } from 'next-auth/react';
 
 
 function Header() {
@@ -11,6 +12,9 @@ function Header() {
   const user = useUltimaStore(state => state.user);
   const setDropDown = useUltimaStore((state) => state.setDropDown);
   const dropdown = useUltimaStore((state) => state.dropdown)
+  const { data: session, status } = useSession();
+
+  console.log(session?.user?.image)
 
   return (
     <div id="header" className="relative w-screen h-24 pl-0 pr-0 lg:pr-8 lg:pl-8 brightness-125 bg-white overflow-x-scroll">
@@ -30,7 +34,9 @@ function Header() {
         </div> : <div className="flex w-64 justify-end items-center lg:justify-start">
             <button onClick={() => setDropDown(!dropdown)} className='flex hover:shadow-2xl justify-center mr-6 items-center border-2 p-2 border-black rounded-3xl w-fit ml-auto'>
               <RxHamburgerMenu className='text-2xl mr-2'/>
+              {session?.user?.image ? <div className='w-9 h-9'><Image className='rounded-full' src={session.user.image} alt='user' height={50} width={50}></Image></div> :
               <CgProfile className='text-3xl'/>
+              }
             </button>
         </div>}
       </div>
