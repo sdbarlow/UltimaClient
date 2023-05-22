@@ -79,27 +79,47 @@ function browse() {
     
     carInputs.forEach((input, index) => {
       showcaseDivs[0]?.classList.add('active');
-      bulletDivs[0]?.classList.add('active')
-      carImages[0]?.addEventListener('click', handleClick)
-      input.addEventListener('change', () => {
-        if (input.checked) {
-          // Remove the "active" class from all showcases
-          showcaseDivs.forEach((showcaseDiv) => {
-            showcaseDiv.classList.remove('active');
-          });
-          bulletDivs.forEach((bulletDiv) => {
-            bulletDiv?.classList.remove('active')
-          });
-          carImages.forEach((carImage) => {
-            carImage?.removeEventListener('click', handleClick);
-          })
-          // Add the "active" class to the corresponding showcase
-          showcaseDivs[index].classList.add('active');
-          bulletDivs[index].classList.add('active');
-          carImages[index].addEventListener('click', handleClick);
-        }
-      });
+      bulletDivs[0]?.classList.add('active');
+      carImages[0]?.addEventListener('click', handleClick);
+      
+      if (input instanceof HTMLInputElement) {
+        input.addEventListener('change', () => {
+          if (input.checked) {
+            // Remove the "active" class from all showcases
+            showcaseDivs.forEach((showcaseDiv) => {
+              if (showcaseDiv){
+                showcaseDiv.classList.remove('active');
+              }
+            });
+            bulletDivs.forEach((bulletDiv) => {
+              bulletDiv?.classList.remove('active');
+            });
+            carImages.forEach((carImage) => {
+              carImage?.removeEventListener('click', handleClick);
+            });
+            
+            // Add the "active" class to the corresponding showcase
+            const selectedShowcaseDiv = showcaseDivs[index];
+              if (selectedShowcaseDiv) {
+                selectedShowcaseDiv.classList.add('active');
+              }
+
+              const selectedBulletDiv = bulletDivs[index];
+              if (selectedBulletDiv) {
+                selectedBulletDiv.classList.add('active');
+              }
+
+              const selectedCarImage = carImages[index];
+              if (selectedCarImage) {
+                selectedCarImage.addEventListener('click', handleClick);
+              }
+          }
+        });
+      }
     });
+    
+    
+    
     
     
   

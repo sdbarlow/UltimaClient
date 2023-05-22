@@ -32,10 +32,10 @@ function dropDown() {
       }
 
   return (
-    <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm rounded-xl text-center z-20">
+    <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden right-[-75px] lg:right-[-50px] top-20 text-sm rounded-xl text-center z-20">
     <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 border-b-2 hover:bg-gray-400">My Rentals</Link>
     <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
-    <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
+    <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400 text-red-400">
       Log Out
     </button>
   </div>

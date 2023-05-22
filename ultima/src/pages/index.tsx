@@ -42,7 +42,9 @@ export default function Home() {
           );
   
           if (visible) {
-            radio.checked = true;
+            if(radio instanceof HTMLInputElement){
+              radio.checked = true;
+            }
           }
         }
       });
@@ -206,7 +208,7 @@ if (!mounted) return null;
                 <svg height="140" width="500">
                   <line x1="13" y1="0" x2="200" y2="300" className="stroke-white" />
                   <foreignObject x="115" y="120" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                    <div className='text-white text-2xl'>
                       <sup className='loc-text'>Dallas</sup>
                     </div>
                   </foreignObject>
@@ -220,7 +222,7 @@ if (!mounted) return null;
                 <svg height="140" width="500">
                   <line x1="90" y1="50" x2="50" y2="200" className="stroke-white" />
                   <foreignObject x="3" y="120" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                    <div className='text-white text-2xl'>
                       <sup className='loc-text'>Los Ang.</sup>
                     </div>
                   </foreignObject>
@@ -233,7 +235,7 @@ if (!mounted) return null;
                 <div id='parent-6' className="inline absolute top-[-90px]">
                 <svg className="h-24 w-64 m-8" width="500">
                 <foreignObject x="65" y="0" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                    <div className='text-white text-2xl'>
                       <sup className='loc-text'>Miami</sup>
                     </div>
                   </foreignObject>
@@ -248,7 +250,7 @@ if (!mounted) return null;
                 <svg height="140" width="500">
                   <line x1="13" y1="0" x2="120" y2="300" className="stroke-white" />
                   <foreignObject x="67" y="120" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                    <div className='text-white text-2xl'>
                       <sup className='loc-text'>Las Vegas</sup>
                     </div>
                   </foreignObject>
@@ -262,7 +264,7 @@ if (!mounted) return null;
                 <svg height="50" width="500">
                   <line x1="0" y1="0" x2="200" y2="200" className="stroke-white" />
                   <foreignObject x="60" y="30" width="500" height="50">
-                    <div xmlns="http://www.w3.org/1999/xhtml" className='text-white text-2xl'>
+                    <div className='text-white text-2xl'>
                       <sup className='loc-text'>New York City</sup>
                     </div>
                   </foreignObject>

@@ -98,6 +98,16 @@
     font-weight: 500;
   }
 
+  .rental-desc-main{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+  }
+
+  .rental-desc{
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 300;
+  }
+
   #platform{
     height:80vh;
     width:100vw;

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FaCar } from "react-icons/fa"
 import Image from 'next/image';
 import useUltimaStore from '../../store/store';
 import KoenigseggDiag from '../../public/KoenigseggDiag2.png'
@@ -24,6 +25,7 @@ const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
 });
 
 interface Rental {
+  car: string;
   id: string;
   car_id: string;
   rental_start: string;
@@ -118,15 +120,19 @@ function Rentals() {
         <DropDownDynamic/>
       )}
       <div className="w-screen bg-black" style={{ minHeight: `calc(100vh - 6rem)` }}>
-        <div className="flex flex-wrap ml-8 pt-8">
+        <div className="flex flex-wrap pt-8">
           {user.data.rentals.length === 0 ? (
-            <div className="flex border-2 border-red-400 w-full items-center justify-center">
-            <p className="text-white text-center bg-gray-900 px-4 py-2 rounded-lg">
-              You have no rentals.
+            <div className="flex flex-col w-full items-center justify-center">
+            <FaCar className='text-white text-6xl' />
+            <p className="rental-desc-main text-white text-center text-2xl pt-4">
+              You currently have no rentals
+            </p>
+            <p className='rental-desc text-white text-center text-l pt-4 pb-4'>
+              Browse Options Below!
             </p>
             <Link href="/browse">
-              <button className="bg-gray-900 text-white py-2 px-4 rounded-lg ml-4">
-                Browse Rentals
+              <button className="rental-desc mt-2 text-white py-2 px-4 border-2 border-white rounded-sm hover:bg-white hover:text-black">
+                Car Gallery
               </button>
             </Link>
           </div>
