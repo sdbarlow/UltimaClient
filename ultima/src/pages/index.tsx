@@ -238,13 +238,13 @@ if (!mounted) return null;
                 </div>
               </div>
             </div>
-            <div onClick={handleClick} className="flex flex-col justify-center md:pl-0 md:pr-0 lg:pl-64 lg:pr-64 w-screen h-screen overflow-hidden bg-black">
+            <div className="flex flex-col justify-center md:pl-0 md:pr-0 lg:pl-64 lg:pr-64 w-screen h-screen overflow-visible bg-black">
               <div className="flex justify-center w-full h-1/12 border-2">
-              <h1 id='loc-header' className='loc-header text-white text-center pt-0 pb-2 md:text-4xl lg:text-6xl'>Browse By Location</h1>
+              <h1 id='loc-header' className='loc-header text-white text-center md:text-4xl lg:text-6xl'>Browse By Location</h1>
               </div>
               <div className="relative block m-auto max-w-[1200px] max-h-[800px] border-2">
               <Image id="usmap" className="align-top relative w-full brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
-              <div id='parent-1' className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <div id='parent-1' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />
                 <div id='parent-2' className="inline absolute">
                 <svg height="140" width="500">
