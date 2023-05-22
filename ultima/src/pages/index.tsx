@@ -198,7 +198,7 @@ if (!mounted) return null;
               <input type="radio" name="slider" id="item-4"/>
               <input type="radio" name="slider" id="item-5"/>
             <div className="cards">
-              <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
+              <label className="absolute w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-1" id="item-1-photo">
                 <Image id='Lamborghini' className="w-full h-full object-cover" width={500} height={300} src="/LamborghiniLogo.png" alt="song"/>
               </label>
               <label className="absolute sm:w-2/6 md:w-3/6 md:h-full left-0 right-0 m-auto transition-all duration-1000 hover:cursor-pointer" htmlFor="item-2" id="item-2-photo">
@@ -214,7 +214,7 @@ if (!mounted) return null;
                 <Image id='Mercedes' className="w-full h-full object-cover" src="/Mercedes.png" width={500} height={300}  alt="song"/>
               </label>
             </div>
-            <div id="player" className="w-full max-w-3xl max-h-fit sm:h-1/5 sm:mb-80 md:h-1/5 flex justify-center items-center border-2 ">
+            <div id="player" className="w-full max-w-3xl max-h-fit sm:h-1/5 sm:mb-80 md:mb-0 flex justify-center items-center">
               <input type="radio" name="text-slider" id="item-text-1" />
               <input type="radio" name="text-slider" id="item-text-2"/>
               <input type="radio" name="text-slider" id="item-text-3"/>
@@ -238,7 +238,7 @@ if (!mounted) return null;
                 </div>
               </div>
             </div>
-            <div onClick={handleClick} className="flex flex-col justify-center pl-64 pr-64 w-screen h-screen overflow-hidden bg-black">
+            <div onClick={handleClick} className="flex flex-col justify-center md:pl-0 md:pr-0 lg:pl-64 lg:pr-64 w-screen h-screen overflow-hidden bg-black">
               <div className="flex justify-center w-full h-1/12 border-2">
               <h1 id='loc-header' className='loc-header text-white text-center pt-0 pb-2 md:text-4xl lg:text-6xl'>Browse By Location</h1>
               </div>
