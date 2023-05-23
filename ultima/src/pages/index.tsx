@@ -177,10 +177,10 @@ if (!mounted) return null;
               <div className="skew-div absolute left-0 top-[6rem] flex-col sm:w-20 md:w-48 lg:w-96 bg-gradient-to-b from-white to-black z-20 justify-center "  style={{ height: `calc(100vh - 6rem)`}}></div>
               <div className="flex flex-col bg-gradient-to-b from-white to-black z-20 justify-center sm:ml-0 md:ml-0 lg:ml-8 -skew-x-12">
               <h1 className='text-black sm:text-lg md:text-2xl lg:text-2xl lg:ml-4 skew-x-12'>Plan your trip now</h1><br/>
-                <h1 className='text-black sm:text-xl sm:mr-3 md:text-3xl md:ml-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
+                <h1 className='text-black sm:text-xl sm:mr-0 sm:ml-4 md:text-3xl md:ml-3 lg:text-5xl lg:pl-4 skew-x-12'>Experience <span id='ultima'>Ultima</span>te Luxury</h1><br/>
                 <h1 className='text-black sm:hidden lg:inline-block skew-x-12 lg:ml-1 lg:pl-10'>Rent the car of your dreams. Unbeatable prices, unlimited miles, flexible pick-up options and much more.</h1>
                 <div className='flex sm:w-full sm:items-center sm:justify-end lg:justify-start lg:mt-6 sm:pl-0 lg:pl-14 lg:overflow-hidden lg:ml-2'>
-                <Link href='/browse' className='main-button skew-x-12 md:pt-3 md:pb-3 md:pl-6 md:pr-6 md:bg-transparent md:mt-4 md:mr-4 md:shadow-sm md:border-2 md:border-white md:shadow-white lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:p-0 sm:m-0 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden md:inline-block md:pr-2 md:text-base lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
+                <Link href='/browse' className='main-button skew-x-12 md:pt-3 md:pb-3 md:pl-6 md:pr-6 md:bg-transparent md:mt-4 md:mr-4 md:shadow-sm sm:border-2 sm:p-2 md:border-2 md:border-white md:shadow-white lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:mr-3 sm:text-sm lg:bg-transparent sm:bg-transparent text-white lg:mt-4 lg:mr-4 rounded-sm sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden md:inline-block md:pr-2 md:text-base lg:inline-block lg:pr-2 lg:text-base'>Book Ride</span><FaCalendarCheck className='inline sm:pl-0 pl-2 text-2xl lg:text-base'/><span className='md:hidden pr-1 pl-1 text-xs'>Book Ride</span></Link>
                 <button className='main-button skew-x-12 md:pt-3 md:pb-3 md:pl-6 md:pr-6 md:block md:mr-4 md:bg-transparent md:mt-4 md:shadow-sm md:border-2 md:border-white md:shadow-white lg:pt-3 lg:pb-3 lg:pl-6 lg:pr-6 sm:text-sm sm:p-0  sm:m-0 sm:hidden lg:block lg:bg-transparent text-white lg:mt-4 rounded-sm sm:bg-transparent sm:shadow-none lg:shadow-sm lg:border-2 lg:border-white lg:shadow-white hover:shadow-lg hover:shadow-slate-300 hover:bg-black hover:border-white'><span className='sm:hidden md:inline-block lg:inline-block md:pr-2 md:text-base lg:pr-2 lg:text-base'>Learn More</span><FaFlagCheckered className='inline pl-2 sm:pl-0 text-2xl lg:text-base'/></button>
               </div>
               </div>
@@ -239,10 +239,10 @@ if (!mounted) return null;
               </div>
             </div>
             <div className="flex flex-col justify-center md:pl-0 md:pr-0 lg:pl-64 lg:pr-64 w-screen h-screen overflow-visible bg-black">
-              <div className="flex justify-center w-full h-1/12 border-2">
-              <h1 id='loc-header' className='loc-header text-white text-center md:text-4xl lg:text-6xl'>Browse By Location</h1>
+              <div className="flex justify-center w-full h-1/12">
+              <h1 id='loc-header' className='loc-header text-white text-center sm:text-2xl md:text-4xl lg:text-6xl'>Browse By Location</h1>
               </div>
-              <div className="relative block m-auto max-w-[1200px] max-h-[800px] border-2">
+              <div className="relative block m-auto max-w-[1200px] max-h-[800px]">
               <Image id="usmap" className="align-top relative w-full brightness-200" width={900} height={300} src="/UnitedStates.jpg" alt="map" />
               <div id='parent-1' onClick={handleClick} className="map-pin absolute group hover:cursor-pointer top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <FiMapPin className="text-blue-600 group-hover:text-white group-hover:h-10 group-hover:w-10 h-8 w-8" />

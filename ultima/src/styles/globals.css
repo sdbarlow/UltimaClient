@@ -336,7 +336,112 @@
     z-index: 1;
   }
 
-  #car-3:checked ~ #platform #car-5-photo,
+  @media screen and (max-width: 405px) {
+  #item-1:checked ~ #player #item-1-text,
+  #item-2:checked ~ #player #item-2-text,
+  #item-3:checked ~ #player #item-3-text,
+  #item-4:checked ~ #player #item-4-text,
+  #item-5:checked ~ #player #item-5-text{
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    padding-left: 0px;
+    opacity: 1;
+    z-index: 1;
+    text-align: center;
+    width: fit-content
+  }
+}
+
+@media screen and (max-width: 405px) {
+#item-1:checked ~ #player #item-2-text,
+#item-2:checked ~ #player #item-5-text,
+#item-3:checked ~ #player #item-1-text,
+#item-4:checked ~ #player #item-3-text,
+#item-5:checked ~ #player #item-4-text {
+  transform: translatex(-100%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-1:checked ~ #player #item-3-text,
+#item-2:checked ~ #player #item-1-text,
+#item-3:checked ~ #player #item-4-text,
+#item-4:checked ~ #player #item-5-text,
+#item-5:checked ~ #player #item-2-text {
+  transform: translatex(-300%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-1:checked ~ #player #item-4-text,
+#item-2:checked ~ #player #item-3-text,
+#item-3:checked ~ #player #item-5-text,
+#item-4:checked ~ #player #item-2-text,
+#item-5:checked ~ #player #item-1-text {
+  transform: translatex(-360%) scale(.5);
+  opacity: .2;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-1:checked ~ #player #item-5-text,
+#item-2:checked ~ #player #item-4-text,
+#item-3:checked ~ #player #item-2-text,
+#item-4:checked ~ #player #item-1-text,
+#item-5:checked ~ #player #item-3-text {
+  transform: translatex(-25%) scale(.5);
+  opacity: .2;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-4:checked ~ .cards #item-4-photo{
+  transform: translatex(-15%) translatey(10%) scale(1);
+  opacity: 1;
+  z-index: 6;
+  filter: brightness(1.25);
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-5:checked ~ .cards #item-4-photo{
+  transform: translatex(35%) translatey(23%) scale(.9);
+  opacity: .4;
+  z-index: 4;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-3:checked ~ .cards #item-4-photo{
+  transform: translatex(-70%) translatey(23%) scale(.9);
+  opacity: .4;
+  z-index: 4;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-1:checked ~ .cards #item-4-photo{
+  transform: translatex(-95%) translatey(15%) scale(.5);
+  opacity: .4;
+  z-index: 4;
+}
+}
+
+@media screen and (max-width: 405px) {
+#item-2:checked ~ .cards #item-4-photo{
+  transform: translatex(90%) translatey(15%) scale(.5);
+  opacity: .4;
+  z-index: 4;
+}
+}
+
+#car-3:checked ~ #platform #car-5-photo,
   #car-2:checked ~ #platform #car-5-photo,
   #car-2:checked ~ #platform #car-4-photo,
   #car-1:checked ~ #platform #car-3-photo,

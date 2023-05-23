@@ -35,13 +35,14 @@ const Header = dynamic(() => import('../../components/header'), {
   ssr: false
 });
 
+const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
+  ssr: false,
+});
+
 function inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
   const dropdown = useUltimaStore((state) => state.dropdown)
-  const setUser = useUltimaStore((state) => state.setUser)
-  const setDropDown = useUltimaStore((state) => state.setDropDown);
-  const dropdownRef = useRef();
   const user = useUltimaStore(state => state.user);
   const [toggle, setToggle] = useState(false)
   const notify = () => toast.error('Must Be Logged In', {
@@ -88,15 +89,6 @@ function inspect() {
     const days = Math.round(Math.abs((start - end) / oneDay)) + 1; 
   
     return days * car.data.price_per_day; 
-  }
-
-  function logOut(){
-    setUser(null)
-    setDropDown(!dropdown)
-  }
-
-  function toggleHandle(){
-    setDropDown(!dropdown)
   }
 
   const handleDateChange = (dateRange) => {
@@ -214,36 +206,18 @@ function handleReserve(){
       })
   }
 }
-
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropDown(false);
-    }
-  };
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, [dropdownRef]);
     
   return (
     <>
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"/>
     <Header/>
-    <div className='flex w-full shadow-inner bg-slate-100 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
     {dropdown && (
-        <div ref={dropdownRef} className="absolute border-2 flex flex-col border-black shadow-md mr-24 w-32 lg:w-48 bg-white overflow-hidden lg:right-[-50px] top-20 text-sm">
-          <Link href='/rentals' onClick={toggleHandle} className="pt-2 pb-2 text-center border-b-2 hover:bg-gray-400">My Rentals</Link>
-          <button className="pt-2 pb-2 border-b-2 border-red-200 hover:bg-gray-400">Profile</button>
-          <button onClick={logOut} className="pt-2 pb-2 hover:bg-gray-400">
-            Log Out
-          </button>
-        </div>
+        <DropDownDynamic/>
       )}
-      <div id='car-slides' className='flex justify-center items-center w-3/4 h-full shadow-inner shadow-black'>
+    <div className='flex w-full shadow-inner bg-slate-100 shadow-black' style={{ height: `calc(100vh - 6rem)` }}>
+      <div id='car-slides' className='flex justify-center items-center sm:w-full md:w-3/4 h-full shadow-inner shadow-black'>
         <div id='left-arrow' className='flex h-fit group hover:cursor-pointer mr-4'>
-          <SlArrowLeft className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
+          <SlArrowLeft className='sm:h-7 sm:w-7 md:h-16 md:w-16 md:group-hover:h-20 md:group-hover:w-20'/>
         </div>
         <div id='image-container' className='flex flex-col justify-center items-center w-3/4 h-full'>
           <div className='w-full flex justify-center items-center mb-10 mt-2 tracking-widest text-2xl'>
@@ -258,14 +232,30 @@ useEffect(() => {
         </>
         : <p>Loading...</p>
       }
+      {toggle ? 
+            <div className="sm:absolute md:hidden h-fit flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
+              <p className='reserve-form-text bg-white p-2 text-xl w-full border-b-2 border-t-2'>${car.data.price_per_day}/Per Day</p>
+              <Calendar value={selectedDateRange} onChange={handleDateChange} className="mb-6" />
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 border-b-2 bg-white w-full font-bold">Total Price:<span className="sm-reserve-form-text text-xl font-normal ml-2">${totalPrice}</span></p>
+              <div className='flex w-full p-2 items-center bg-white border-b-2 justify-between'>
+              <button className="bg-red-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>Cancel</button>
+              <button className="bg-green-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleReserve}>Reserve</button>
+              </div>
+            </div>: 
+      <div className='sm:flex md:hidden w-full justify-center items-center mb-10 mt-2 tracking-widest text-2xl'>
+          <button id='table-reserve' onClick={handleClick} className="bg-black text-slate-300 text-center w-full mt-16 p-4 text-2xl hover:text-3xl border-2 border-slate-300">Reserve Now</button>
+        </div>
+          }
         </div>
         <div id='right-arrow' className='flex h-fit group hover:cursor-pointer ml-4'>
-          <SlArrowRight className='h-16 w-16 group-hover:h-20 group-hover:w-20'/>
+          <SlArrowRight className='sm:h-7 sm:w-7 md:h-16 md:w-16 md:group-hover:h-20 md:group-hover:w-20'/>
         </div>
       </div>
-      <div id='car-stats' className='flex w-1/4 h-full items-center justify-center shadow-inner shadow-black'>
+      <div id='car-stats' className='hidden md:flex w-1/4 h-full items-center justify-center shadow-inner shadow-black'>
           {toggle ? 
-            <div className="h-fit flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
+            <div className="sm:absolute h-fit md:flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
               <p className='reserve-form-text bg-white p-2 text-xl w-full border-b-2 border-t-2'>${car.data.price_per_day}/Per Day</p>
               <Calendar value={selectedDateRange} onChange={handleDateChange} className="mb-6" />
               <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate.toLocaleDateString()}</span></p>

@@ -134,12 +134,15 @@ function browse() {
           res.json()
           .then((data) => {
             setCar({ data });
-            router.push('/inspect');
+            routePage()
           });
         }
       });
   }
   
+  function routePage(){
+    router.push('/inspect')
+  }
 
   return (
   <>
