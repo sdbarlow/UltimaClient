@@ -34,14 +34,11 @@ const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
 });
 
 
-function browse() {
+function Browse() {
   const setCarToShow = useUltimaStore((state) => state.setCarToShow);
   const setCar = useUltimaStore((state) => state.setCar);
-  const setUser = useUltimaStore((state) => state.setUser)
-  const setDropDown = useUltimaStore((state) => state.setDropDown);
   const router = useRouter()
   const dropdown = useUltimaStore((state) => state.dropdown)
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
 
@@ -251,4 +248,4 @@ function browse() {
   )
 }
 
-export default browse
+export default Browse

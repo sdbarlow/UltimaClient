@@ -121,7 +121,7 @@ useEffect(() => {
 }, [])
 
 function handleClick(){
-  router.push('/browse')
+  router.push('/Browse')
 }
 
 useEffect(() => {
