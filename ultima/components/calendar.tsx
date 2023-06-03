@@ -7,15 +7,11 @@ interface CalendarProps {
   onChange: (value: Range) => void;
 }
 
-const Calendar: React.FC<CalendarProps> = ({ value, onChange }) => {
-  const handleSelect = (ranges: {selection: Range}) => {
-    onChange(ranges.selection);
-  };
+const Calendar: React.FC<CalendarProps> = ({ value }) => {
 
   return (
     <DateRange
       ranges={[value]}
-      onChange={handleSelect}
       showDateDisplay={false}
     />
   );
