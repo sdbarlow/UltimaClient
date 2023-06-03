@@ -25,12 +25,16 @@ const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
 });
 
 interface Rental {
-  car: string;
+  car: any;
   id: string;
   car_id: string;
   rental_start: string;
   rental_end: string;
   total_price: number;
+}
+
+interface CarImages {
+  [make: string]: { img: any };
 }
 
 function Rentals() {
@@ -52,23 +56,23 @@ function Rentals() {
     theme: "dark",
     });
 
-  const [carImages, setCarImages] = useState({
-    Mercedes: {
-      img: MercedesDiag
-    },
-    Koenigsegg: {
-      img: KoenigseggDiag
-    },
-    Porsche: {
-      img: PorscheDiag
-    },
-    Lamborghini: {
-      img: LamborghiniDiag
-    },
-    Ferrari: {
-      img: FerarriDiag
-    }
-  });
+    const carImages: CarImages = {
+      Mercedes: {
+        img: MercedesDiag
+      },
+      Koenigsegg: {
+        img: KoenigseggDiag
+      },
+      Porsche: {
+        img: PorscheDiag
+      },
+      Lamborghini: {
+        img: LamborghiniDiag
+      },
+      Ferrari: {
+        img: FerarriDiag
+      }
+    };
 
   if (user == null) {
      router.push('/')
@@ -130,7 +134,7 @@ function Rentals() {
             <p className='rental-desc text-white text-center text-l pt-4 pb-4'>
               Browse Options Below!
             </p>
-            <Link href="/browse">
+            <Link href="/Browse">
               <button className="rental-desc mt-2 text-white py-2 px-4 border-2 border-white rounded-sm hover:bg-white hover:text-black">
                 Car Gallery
               </button>
@@ -207,4 +211,5 @@ function Rentals() {
   );
 }
 
+// @ts-ignore
 export default dynamic (() => Promise.resolve(Rentals), {ssr: false})
