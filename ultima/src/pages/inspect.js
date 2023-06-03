@@ -39,7 +39,7 @@ const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
   ssr: false,
 });
 
-function inspect() {
+function Inspect() {
   const cartoshow = useUltimaStore((state) => state.cartoshow)
   const car = useUltimaStore((state) => state.car)
   const dropdown = useUltimaStore((state) => state.dropdown)
@@ -292,4 +292,4 @@ function handleReserve(){
   )
 }
 
-export default dynamic (() => Promise.resolve(inspect), {ssr: false})
+export default dynamic (() => Promise.resolve(Inspect), {ssr: false})

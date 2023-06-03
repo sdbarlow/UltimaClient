@@ -30,5 +30,8 @@
     "typescript": "5.0.4",
     "yup": "^1.1.1",
     "zustand": "^4.3.7"
+  },
+  "devDependencies": {
+    "@types/react-date-range": "^1.4.4"
   }
 }

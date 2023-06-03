@@ -3,7 +3,7 @@ import Link from 'next/link'
 import useUltimaStore from '../store/store'
 import {signOut} from 'next-auth/react'
 
-function dropDown() {
+function DropDown() {
     const setDropDown = useUltimaStore((state) => state.setDropDown);
     const setUser = useUltimaStore((state) => state.setUser)
     const dropdown = useUltimaStore((state) => state.dropdown);
@@ -42,5 +42,5 @@ function dropDown() {
   )
 }
 
-export default dropDown
+export default DropDown
 
