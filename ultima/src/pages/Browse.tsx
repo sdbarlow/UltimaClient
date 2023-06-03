@@ -34,7 +34,7 @@ const DropDownDynamic = dynamic(() => import("../../components/dropDown"), {
 });
 
 
-function browse() {
+function Browse() {
   const setCarToShow = useUltimaStore((state) => state.setCarToShow);
   const setCar = useUltimaStore((state) => state.setCar);
   const setUser = useUltimaStore((state) => state.setUser)
@@ -251,4 +251,4 @@ function browse() {
   )
 }
 
-export default browse
+export default Browse
