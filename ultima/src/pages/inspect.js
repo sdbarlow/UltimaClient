@@ -2,7 +2,7 @@ import React from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import Calendar from '../../components/Calendar';
+import Calendar from '../../components/calendar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-date-range/dist/styles.css';
@@ -206,6 +206,8 @@ function handleReserve(){
       })
   }
 }
+
+console.log(selectedDateRange.startDate)
     
   return (
     <>
@@ -236,8 +238,8 @@ function handleReserve(){
             <div className="sm:absolute md:hidden h-fit flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
               <p className='reserve-form-text bg-white p-2 text-xl w-full border-b-2 border-t-2'>${car.data.price_per_day}/Per Day</p>
               <Calendar value={selectedDateRange} onChange={handleDateChange} className="mb-6" />
-              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate.toLocaleDateString()}</span></p>
-              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate?.toDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate?.toDateString()}</span></p>
               <p className="reserve-form-text text-lg p-2 border-b-2 bg-white w-full font-bold">Total Price:<span className="sm-reserve-form-text text-xl font-normal ml-2">${totalPrice}</span></p>
               <div className='flex w-full p-2 items-center bg-white border-b-2 justify-between'>
               <button className="bg-red-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>Cancel</button>
@@ -258,8 +260,8 @@ function handleReserve(){
             <div className="sm:absolute h-fit md:flex flex-col justify-center border-l-2 border-r-2 items-start bg-slate-100 text-black">
               <p className='reserve-form-text bg-white p-2 text-xl w-full border-b-2 border-t-2'>${car.data.price_per_day}/Per Day</p>
               <Calendar value={selectedDateRange} onChange={handleDateChange} className="mb-6" />
-              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate.toLocaleDateString()}</span></p>
-              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate.toLocaleDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2 border-t-2">Start Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.startDate?.toDateString()}</span></p>
+              <p className="reserve-form-text text-lg p-2 font-bold bg-white w-full border-b-2">End Date:<span className="sm-reserve-form-text text-xl font-normal ml-2">{selectedDateRange.endDate?.toDateString()}</span></p>
               <p className="reserve-form-text text-lg p-2 border-b-2 bg-white w-full font-bold">Total Price:<span className="sm-reserve-form-text text-xl font-normal ml-2">${totalPrice}</span></p>
               <div className='flex w-full p-2 items-center bg-white border-b-2 justify-between'>
               <button className="bg-red-400 text-black px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>Cancel</button>
