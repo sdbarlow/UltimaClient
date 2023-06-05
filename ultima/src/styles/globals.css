@@ -116,7 +116,7 @@
     background-color: white;
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 430px) {
     #platform {
       height:80vh;
       width:100vw;
@@ -336,7 +336,7 @@
     z-index: 1;
   }
 
-  @media screen and (max-width: 405px) {
+  @media screen and (max-width: 430px) {
   #item-1:checked ~ #player #item-1-text,
   #item-2:checked ~ #player #item-2-text,
   #item-3:checked ~ #player #item-3-text,
@@ -354,7 +354,7 @@
   }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-1:checked ~ #player #item-2-text,
 #item-2:checked ~ #player #item-5-text,
 #item-3:checked ~ #player #item-1-text,
@@ -366,7 +366,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-1:checked ~ #player #item-3-text,
 #item-2:checked ~ #player #item-1-text,
 #item-3:checked ~ #player #item-4-text,
@@ -378,7 +378,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-1:checked ~ #player #item-4-text,
 #item-2:checked ~ #player #item-3-text,
 #item-3:checked ~ #player #item-5-text,
@@ -389,7 +389,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-1:checked ~ #player #item-5-text,
 #item-2:checked ~ #player #item-4-text,
 #item-3:checked ~ #player #item-2-text,
@@ -400,7 +400,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-4:checked ~ .cards #item-4-photo{
   transform: translatex(-15%) translatey(10%) scale(1);
   opacity: 1;
@@ -409,7 +409,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-5:checked ~ .cards #item-4-photo{
   transform: translatex(35%) translatey(23%) scale(.9);
   opacity: .4;
@@ -417,7 +417,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-3:checked ~ .cards #item-4-photo{
   transform: translatex(-70%) translatey(23%) scale(.9);
   opacity: .4;
@@ -425,7 +425,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-1:checked ~ .cards #item-4-photo{
   transform: translatex(-95%) translatey(15%) scale(.5);
   opacity: .4;
@@ -433,7 +433,7 @@
 }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 430px) {
 #item-2:checked ~ .cards #item-4-photo{
   transform: translatex(90%) translatey(15%) scale(.5);
   opacity: .4;
@@ -487,7 +487,7 @@
     z-index: 1;
   }
 
-  @media screen and (max-width: 405px) {
+  @media screen and (max-width: 430px) {
     #platform #car-1-photo,
     #platform #car-2-photo,
     #platform #car-3-photo,
@@ -497,7 +497,7 @@
     }
   }
 
-  @media screen and (max-width: 405px) {
+  @media screen and (max-width: 430px) {
     #car-1:checked ~ #platform #car-2-photo,
     #car-2:checked ~ #platform #car-3-photo,
     #car-3:checked ~ #platform #car-4-photo,
